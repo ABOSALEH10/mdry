@@ -22,7 +22,7 @@
         <button onclick="window.open('https://docs.google.com/forms/d/18MKUIbE2f_J7_SKizM0z0Xp03JtGXwKWOYLLi7mzQAQ/edit?ts=656b3442','_blank')">تقديم وزارة العدل</button>
         <button onclick="toggleContent(0)">قيادة وزارة العدل</button>
         <button onclick="window.open('https://forms.gle/rYJ3eFDavZpHdBeHA','_blank')">تقديم قضية</button>
-        <button onclick="toggleContent(1)">حالة القضايا العدلية</button>
+        <button onclick="toggleContent(1)">حالة التقديمات والكليات العدلية</button>
         <button onclick="window.open('https://discord.com/channels/851534602576461854/915947677240426607','_blank')">طلب محامي</button>
         <button onclick="toggleContent(2)">شرح خدمات الوزارة والأنظمة</button>
     </div>
@@ -38,8 +38,13 @@
     </div>
 
     <div class="content-box">
-        <h2>حالة القضايا العدلية</h2>
-        <p>هنا يمكن إضافة محتوى حالة القضايا العدلية لاحقًا.</p>
+        <h2>حالة التقديمات والكليات العدلية</h2>
+        <ul>
+            <li>التقديم العادي لوزارة العدل : مفتوح</li>
+            <li>تقديم كلية القضاة : مغلق</li>
+            <li>تقديم كلية المحاماة : مغلق</li>
+            <li>تقديم دورة العدالة : مغلق</li>
+        </ul>
     </div>
 
     <div class="content-box">
@@ -84,25 +89,42 @@
 <script>
 function toggleContent(index){
     let boxes = document.querySelectorAll(".content-box");
-    boxes.forEach(box => box.style.display = "none");
-    boxes[index].style.display = "block";
+    if(boxes[index].style.display === "block"){
+        boxes[index].style.display = "none";
+    } else {
+        boxes.forEach(box => box.style.display = "none");
+        boxes[index].style.display = "block";
+    }
 }
 
-// السلايدر
+// السلايدر مع تأثير التمويه (fade)
 let slides = document.querySelectorAll(".slide");
 let current = 0;
 
-document.querySelector(".next").onclick = function(){
+function showSlide(newIndex){
     slides[current].classList.remove("active");
-    current = (current + 1) % slides.length;
+    slides[current].style.opacity = 0;
+    current = newIndex;
     slides[current].classList.add("active");
+    slides[current].style.opacity = 1;
+}
+
+document.querySelector(".next").onclick = function(){
+    showSlide((current + 1) % slides.length);
 };
 
 document.querySelector(".prev").onclick = function(){
-    slides[current].classList.remove("active");
-    current = (current - 1 + slides.length) % slides.length;
-    slides[current].classList.add("active");
+    showSlide((current - 1 + slides.length) % slides.length);
 };
+
+// تغيير لون الأزرار عند hover و active
+let allButtons = document.querySelectorAll("button");
+allButtons.forEach(btn => {
+    btn.addEventListener("mouseenter", ()=>{ btn.style.background = "#E3DBBB"; });
+    btn.addEventListener("mouseleave", ()=>{ btn.style.background = ""; });
+    btn.addEventListener("mousedown", ()=>{ btn.style.background = "#E3DBBB"; });
+    btn.addEventListener("mouseup", ()=>{ btn.style.background = ""; });
+});
 </script>
 
 </body>
