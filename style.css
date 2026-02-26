@@ -37,12 +37,12 @@ body{
     display:grid;
     grid-template-columns:1fr 1fr;
     gap:25px;
-    margin-bottom:30px;
+    margin-bottom:10px; /* قللنا المسافة عن السلايدر */
 }
 
 button{
-    padding:25px;
-    font-size:20px;
+    padding:20px;
+    font-size:18px;
     border:none;
     border-radius:20px;
     background:#4F6F52;
@@ -56,39 +56,48 @@ button:hover{
     background:#E3DBBB;
 }
 
-/* القوائم */
+/* القوائم محسّنة + fade-in/out */
 .content-box{
-    display:none;
-    margin:20px auto;
-    padding:25px;
+    display:block;
+    margin:15px auto;
+    padding:25px 20px;
     background:#DDE5B6;
     border-radius:20px;
     box-shadow:0 8px 20px rgba(0,0,0,0.4);
     width:85%;
+    max-width:700px;
     text-align:right;
-    transition:0.3s ease-in-out;
+    opacity:0;
+    max-height:0;
+    overflow:hidden;
+    transition:opacity 0.5s ease, max-height 0.5s ease;
+}
+
+.content-box.show{
+    opacity:1;
+    max-height:1000px;
 }
 
 .content-box h2{
-    font-size:28px;
+    font-size:26px;
     margin-bottom:15px;
 }
 
 .content-box ul{
     list-style-type: disc;
-    margin-right:20px;
+    margin-right:25px;
     text-align:right;
 }
 
 .content-box ul li{
-    font-size:20px;
+    font-size:18px;
     margin-bottom:8px;
 }
 
 /* السلايدر */
 .slider-container{
     width:85%;
-    margin:40px auto;
+    margin:5px auto; /* مسافة بسيطة جدًا من الأزرار */
     position:relative;
     border-radius:25px;
     overflow:hidden;
@@ -106,7 +115,7 @@ button:hover{
     height:100%;
     display:none;
     opacity:0;
-    transition:opacity 0.5s ease-in-out;
+    transition:opacity 0.7s ease-in-out;
 }
 
 .slide.active{
@@ -152,4 +161,21 @@ button:hover{
 
 .prev:hover,.next:hover{
     background:rgba(0,0,0,0.8);
+}
+
+/* استجابة الموبايل */
+@media screen and (max-width:600px){
+    .buttons{
+        grid-template-columns:1fr;
+    }
+    .content-box{
+        width:95%;
+        padding:20px;
+    }
+    .header-box h1{
+        font-size:28px;
+    }
+    .header-box p{
+        font-size:16px;
+    }
 }

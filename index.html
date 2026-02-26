@@ -89,15 +89,20 @@
 <script>
 function toggleContent(index){
     let boxes = document.querySelectorAll(".content-box");
-    if(boxes[index].style.display === "block"){
-        boxes[index].style.display = "none";
-    } else {
-        boxes.forEach(box => box.style.display = "none");
-        boxes[index].style.display = "block";
-    }
+    boxes.forEach((box, i) => {
+        if(i === index){
+            if(box.classList.contains("show")){
+                box.classList.remove("show");
+            } else {
+                box.classList.add("show");
+            }
+        } else {
+            box.classList.remove("show");
+        }
+    });
 }
 
-// السلايدر مع تأثير التمويه (fade)
+// السلايدر مع تمويه smooth fade
 let slides = document.querySelectorAll(".slide");
 let current = 0;
 
