@@ -121,3 +121,20 @@ body {
 
 .red { color: #ff4d4d; font-weight: bold; }
 .green-text { color: #21DE66; font-weight: bold; }
+/* الحالة الأساسية قبل الظهور */
+.page-enter {
+    opacity: 0;
+    filter: blur(15px);
+    transform: scale(1.02);
+}
+
+/* بعد تحميل الصفحة */
+.page-enter-active {
+    opacity: 1;
+    filter: blur(0);
+    transform: scale(1);
+    transition: 
+        opacity 0.8s ease,
+        filter 0.8s ease,
+        transform 0.8s ease;
+}
