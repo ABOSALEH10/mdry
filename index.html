@@ -1,106 +1,108 @@
 <!DOCTYPE html>
-<html lang="ar" dir="rtl">
+<html lang="ar">
 <head>
     <meta charset="UTF-8">
+    <title>وزارة العدل KR</title>
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>وزارة العدل - KR</title>
+
+    <!-- خط Cairo -->
+    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="style.css">
 </head>
+<body>
 
-<body class="page-enter">
-
-<header class="header-container">
-    <div class="top-main-card">
+    <!-- المربع الرئيسي -->
+    <div class="header-box">
         <h1>موقع وزارة العدل في سيرفر KR</h1>
-    </div>
-</header>
-
-<main class="container">
-
-    <div class="button-grid">
-
-        <a href="#" class="btn">تقديم وزارة العدل</a>
-
-        <button onclick="toggleSection('leadership')" class="btn">
-            قيادة وزارة العدل
-        </button>
-
-        <button onclick="toggleSection('services')" class="btn">
-    حالة التقاديم العدلية
-        </button>
-
-        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRBrnykQp3JgYB3ipnblGIkIB6s9-uoIH9P7EVYnHny5Yk0g/viewform" class="btn">تقديم قضية</a>
-
-        <a href="https://discord.com/channels/851534602576461854/894917227093065758" class="btn">طلب محامي</a>
-
-        <button onclick="toggleSection('explain')" class="btn">
-            شرح خدمات الوزارة والأنظمة
-        </button>
-
+        <p>موقع يقدم لك خدمات وزارة العدل في سيرفر KR ، وأن تتعرف على الوزارة.</p>
     </div>
 
-    <!-- قيادة -->
-    <div id="leadership" class="info-card hidden">
-        <div class="row"><span>وزير العدل | KR</span> <span>عبد العزيز الخالدي</span></div>
-        <div class="row"><span>نائب وزير العدل | KR</span> <span>ابو صالح العتيبي</span></div>
-        <div class="row"><span>مستشار وزير العدل</span> <span>-</span></div>
+    <!-- الأزرار -->
+    <div class="buttons">
+        <button onclick="window.open('https://docs.google.com/forms/d/18MKUIbE2f_J7_SKizM0z0Xp03JtGXwKWOYLLi7mzQAQ/edit?ts=656b3442','_blank')">تقديم وزارة العدل</button>
+        <button onclick="toggleContent(0)">قيادة وزارة العدل</button>
+        <button onclick="window.open('https://forms.gle/rYJ3eFDavZpHdBeHA','_blank')">تقديم قضية</button>
+        <button onclick="toggleContent(1)">حالة القضايا العدلية</button>
+        <button onclick="window.open('https://discord.com/channels/851534602576461854/915947677240426607','_blank')">طلب محامي</button>
+        <button onclick="toggleContent(2)">شرح خدمات الوزارة والأنظمة</button>
     </div>
 
-    <!-- خدمات الوزارة (الصندوق الأسود بالحالات) -->
-    <div id="services" class="info-card dark-card hidden">
-        <div class="status-line">
-            <span>كلية القضاة :</span>
-            <span class="red">مغلق</span>
+    <!-- القوائم -->
+    <div class="content-box">
+        <h2>قيادة وزارة العدل KR</h2>
+        <ul>
+            <li>وزير العدل : عبد العزيز الخالدي</li>
+            <li>نائب وزير العدل : ابو صالح العتيبي</li>
+            <li>مستشار وزير العدل : لايوجد</li>
+        </ul>
+    </div>
+
+    <div class="content-box">
+        <h2>حالة القضايا العدلية</h2>
+        <p>هنا يمكن إضافة محتوى حالة القضايا العدلية لاحقًا.</p>
+    </div>
+
+    <div class="content-box">
+        <h2>شرح خدمات الوزارة والأنظمة</h2>
+        <p>
+            <strong>شرح رفع قضية :</strong><br>
+            - للدخول على تقديم القضية وكتابة البيانات المطلوبة.<br>
+            - شرح القضية بالتفصيل.<br>
+            - ارفاق الادلة، وفي حال طلب القاضي تسليمها له.<br>
+            - يمنع رفض قضية ضد مجرم من الدرجة 3، فهي من مهمة وزارة الداخلية.<br>
+            - النتيجة تصلك عبر الخاص، يرجى التأكد من خاصك مفتوح.<br>
+            - يجب حضور المواعيد الخاصة بالقضية.<br><br>
+
+            <strong>التقديم للوزارة أو الكليات :</strong><br>
+            - الالتزام بالقوانين ونموذج التقديم.<br>
+            - انتظار النتيجة وعدم ازعاج المسؤولين.<br>
+            - في حال تأخر النتيجة 48 ساعة، التواصل مع إدارة القبول.<br><br>
+
+            <strong>طلب محامي :</strong><br>
+            - الالتزام بالنموذج.<br>
+            - الالتزام بدفع المبلغ المحدد.<br>
+            - طرح الاستشارة القانونية بخاص المحامي بشكل واضح ورسمي.
+        </p>
+    </div>
+
+    <!-- السلايدر -->
+    <div class="slider-container">
+        <div class="slider">
+            <div class="slide active">
+                <img src="صورة من محاكمة.png" alt="">
+                <div class="slide-text">من احد المحاكم</div>
+            </div>
+            <div class="slide">
+                <img src="صورة من حملة.png" alt="">
+                <div class="slide-text">من احد حملات الوزارة</div>
+            </div>
         </div>
-
-        <div class="status-line">
-            <span>كلية المحاماة :</span>
-            <span class="red">مغلق</span>
-        </div>
-
-        <div class="status-line">
-            <span>دورة العدالة :</span>
-            <span class="red">مغلقة</span>
-        </div>
-
-        <div class="status-line">
-            <span>التقديم العادي للوزارة :</span>
-            <span class="green-text">مفتوح</span>
-        </div>
+        <button class="prev">&#10094;</button>
+        <button class="next">&#10095;</button>
     </div>
-
-    <!-- شرح الأنظمة -->
-    <div id="explain" class="info-card hidden">
-        <h3>رفع القضايا</h3>
-        <p>يجب أن تكون القضية منطقية وضمن الرول بلاي مع توفر الأدلة الواضحة.</p>
-
-        <h3>طلب محامي</h3>
-        <p>الالتزام بالنموذج الصحيح ودفع الرسوم والتواصل مع المحامي بعد القبول.</p>
-
-        <h3>التقديم على الوزارة</h3>
-        <p>يجب الالتزام بجميع قوانين التقديم لتجنب الرفض أو العقوبات.</p>
-    </div>
-
-</main>
 
 <script>
-function toggleSection(id) {
-    const sections = ['leadership','services','explain'];
-
-    sections.forEach(sec => {
-        const element = document.getElementById(sec);
-
-        if(sec === id){
-            element.classList.toggle("show");
-        } else {
-            element.classList.remove("show");
-        }
-    });
+function toggleContent(index){
+    let boxes = document.querySelectorAll(".content-box");
+    boxes.forEach(box => box.style.display = "none");
+    boxes[index].style.display = "block";
 }
 
-window.addEventListener("load", function () {
-    document.body.classList.add("page-enter-active");
-});
+// السلايدر
+let slides = document.querySelectorAll(".slide");
+let current = 0;
+
+document.querySelector(".next").onclick = function(){
+    slides[current].classList.remove("active");
+    current = (current + 1) % slides.length;
+    slides[current].classList.add("active");
+};
+
+document.querySelector(".prev").onclick = function(){
+    slides[current].classList.remove("active");
+    current = (current - 1 + slides.length) % slides.length;
+    slides[current].classList.add("active");
+};
 </script>
 
 </body>

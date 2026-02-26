@@ -1,143 +1,151 @@
-/* =====================
-   الأساسي
-===================== */
-body {
-    background-color: hsl(150, 39%, 28%);
-    margin: 0;
-    padding: 0;
-    color: white;
-    direction: rtl;
-    font-family: sans-serif;
-    font-weight: bold; /* جعل كل النص عريض */
+/* إعدادات عامة */
+*{
+    margin:0;
+    padding:0;
+    box-sizing:border-box;
+    font-family:'Cairo', sans-serif;
+    font-weight:700;
+    text-align:center;
 }
 
-/* =====================
-   الهيدر
-===================== */
-.header-container {
-    padding: 20px;
-    display: flex;
-    justify-content: center;
+body{
+    direction:rtl;
+    background:linear-gradient(180deg,#1E2A2F,#2F4F4F);
+    padding:30px;
 }
 
-.top-main-card {
-    background-color: #21DE66;
-    color: #000;
-    width: 100%;
-    max-width: 800px;
-    padding: 25px 15px;
-    border-radius: 30px;
-    box-shadow: 0 10px 30px rgba(0,0,0,0.5);
-    text-align: center;
+/* المربع العلوي */
+.header-box{
+    background:#C5D89D;
+    padding:40px 20px;
+    border-radius:25px;
+    box-shadow:0 10px 30px rgba(0,0,0,0.4);
+    margin-bottom:40px;
 }
 
-/* =====================
-   الحاوية
-===================== */
-.container {
-    max-width: 700px;
-    margin: auto;
-    padding: 15px;
+.header-box h1{
+    font-size:38px;
+    margin-bottom:15px;
 }
 
-/* =====================
-   شبكة الأزرار
-===================== */
-.button-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 15px;
+.header-box p{
+    font-size:20px;
 }
 
-/* =====================
-   الأزرار
-===================== */
-.btn {
-    background-color: #1e1e1e;
-    color: #21DE66;
-    border: 2px solid #21DE66;
-    padding: 18px;
-    font-size: 17px;
-    border-radius: 15px;
-    cursor: pointer;
-    text-decoration: none;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    transition: 0.3s ease;
+/* الأزرار */
+.buttons{
+    display:grid;
+    grid-template-columns:1fr 1fr;
+    gap:25px;
+    margin-bottom:30px;
 }
 
-.btn:hover {
-    background-color: #21DE66;
-    color: #000;
+button{
+    padding:25px;
+    font-size:20px;
+    border:none;
+    border-radius:20px;
+    background:#4F6F52;
+    color:white;
+    cursor:pointer;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    transition:0.3s;
 }
 
-/* =====================
-   مربعات المعلومات
-===================== */
-.info-card {
-    background-color: #7F9C96;
-    color: white;
-    margin-top: 25px;
-    padding: 20px;
-    border-radius: 20px;
-    line-height: 1.8;
-    opacity: 0;
-    transform: translateY(10px);
-    filter: blur(10px);
-    transition: all 0.4s ease;
-    display: none;
+button:hover{
+    background:#3A5A40;
 }
 
-/* الصندوق الأسود للحالات */
-.dark-card {
-    background-color: #111;
+/* القوائم */
+.content-box{
+    display:none;
+    margin:20px auto;
+    padding:25px;
+    background:#DDE5B6;
+    border-radius:20px;
+    box-shadow:0 8px 20px rgba(0,0,0,0.4);
+    width:85%;
+    text-align:right;
 }
 
-/* عند الظهور */
-.info-card.show {
-    display: block;
-    opacity: 1;
-    transform: translateY(0);
-    filter: blur(0);
+.content-box h2{
+    font-size:28px;
+    margin-bottom:15px;
 }
 
-/* الحالات */
-.status-line {
-    display: flex;
-    justify-content: space-between;
-    margin: 10px 0;
+.content-box ul{
+    list-style-type: disc;
+    margin-right:20px;
+    text-align:right;
 }
 
-.red {
-    color: #ff4d4d;
+.content-box ul li{
+    font-size:20px;
+    margin-bottom:8px;
 }
 
-.green-text {
-    color: #21DE66;
+/* السلايدر */
+.slider-container{
+    width:85%;
+    margin:40px auto;
+    position:relative;
+    border-radius:25px;
+    overflow:hidden;
+    box-shadow:0 10px 30px rgba(0,0,0,0.5);
 }
 
-/* =====================
-   انيميشن دخول الصفحة
-===================== */
-.page-enter {
-    opacity: 0;
-    filter: blur(15px);
-    transform: scale(1.02);
+.slider{
+    position:relative;
+    height:300px;
 }
 
-.page-enter-active {
-    opacity: 1;
-    filter: blur(0);
-    transform: scale(1);
-    transition: 0.8s ease;
+.slide{
+    position:absolute;
+    width:100%;
+    height:100%;
+    display:none;
 }
 
-/* =====================
-   الهاتف
-===================== */
-@media (max-width: 480px) {
-    .button-grid {
-        grid-template-columns: 1fr;
-    }
+.slide.active{
+    display:block;
+}
+
+.slide img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+    border-radius:25px;
+}
+
+/* نص الصورة */
+.slide-text{
+    position:absolute;
+    bottom:15px;
+    right:15px;
+    background:rgba(0,0,0,0.6);
+    color:white;
+    padding:8px 18px;
+    border-radius:12px;
+    font-size:18px;
+}
+
+/* الأسهم */
+.prev,.next{
+    position:absolute;
+    top:50%;
+    transform:translateY(-50%);
+    background:rgba(0,0,0,0.5);
+    border:none;
+    color:white;
+    font-size:28px;
+    padding:10px 15px;
+    border-radius:50%;
+    cursor:pointer;
+}
+
+.prev{ left:15px; }
+.next{ right:15px; }
+
+.prev:hover,.next:hover{
+    background:rgba(0,0,0,0.8);
 }
