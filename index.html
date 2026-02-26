@@ -4,85 +4,104 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>وزارة العدل - KR</title>
-    <!-- ربط ملف التنسيق المنسق والمتجاوب مع الهاتف -->
     <link rel="stylesheet" href="style.css">
 </head>
-<body>
 
-    <!-- المستطيل العلوي المنحني (بشكل البطاقة في الصورة) -->
-    <header class="header-container">
-        <div class="top-main-card">
-            <h1>موقع وزارة العدل في سيرفر KR</h1>
+<body class="page-enter">
+
+<header class="header-container">
+    <div class="top-main-card">
+        <h1>موقع وزارة العدل في سيرفر KR</h1>
+    </div>
+</header>
+
+<main class="container">
+
+    <div class="button-grid">
+
+        <a href="#" class="btn">تقديم وزارة العدل</a>
+
+        <button onclick="toggleSection('leadership')" class="btn">
+            قيادة وزارة العدل
+        </button>
+
+        <button onclick="toggleSection('services')" class="btn">
+    حالة التقاديم العدلية
+        </button>
+
+        <a href="https://docs.google.com/forms/d/e/1FAIpQLSeRBrnykQp3JgYB3ipnblGIkIB6s9-uoIH9P7EVYnHny5Yk0g/viewform" class="btn">تقديم قضية</a>
+
+        <a href="https://discord.com/channels/851534602576461854/894917227093065758" class="btn">طلب محامي</a>
+
+        <button onclick="toggleSection('explain')" class="btn">
+            شرح خدمات الوزارة والأنظمة
+        </button>
+
+    </div>
+
+    <!-- قيادة -->
+    <div id="leadership" class="info-card hidden">
+        <div class="row"><span>وزير العدل | KR</span> <span>عبد العزيز الخالدي</span></div>
+        <div class="row"><span>نائب وزير العدل | KR</span> <span>ابو صالح العتيبي</span></div>
+        <div class="row"><span>مستشار وزير العدل</span> <span>-</span></div>
+    </div>
+
+    <!-- خدمات الوزارة (الصندوق الأسود بالحالات) -->
+    <div id="services" class="info-card dark-card hidden">
+        <div class="status-line">
+            <span>كلية القضاة :</span>
+            <span class="red">مغلق</span>
         </div>
-    </header>
-    <body class="page-enter"></body>
-    <script>
-window.addEventListener("load", function() {
+
+        <div class="status-line">
+            <span>كلية المحاماة :</span>
+            <span class="red">مغلق</span>
+        </div>
+
+        <div class="status-line">
+            <span>دورة العدالة :</span>
+            <span class="red">مغلقة</span>
+        </div>
+
+        <div class="status-line">
+            <span>التقديم العادي للوزارة :</span>
+            <span class="green-text">مفتوح</span>
+        </div>
+    </div>
+
+    <!-- شرح الأنظمة -->
+    <div id="explain" class="info-card hidden">
+        <h3>رفع القضايا</h3>
+        <p>يجب أن تكون القضية منطقية وضمن الرول بلاي مع توفر الأدلة الواضحة.</p>
+
+        <h3>طلب محامي</h3>
+        <p>الالتزام بالنموذج الصحيح ودفع الرسوم والتواصل مع المحامي بعد القبول.</p>
+
+        <h3>التقديم على الوزارة</h3>
+        <p>يجب الالتزام بجميع قوانين التقديم لتجنب الرفض أو العقوبات.</p>
+    </div>
+
+</main>
+
+<script>
+function toggleSection(id) {
+    const sections = ['leadership','services','explain'];
+
+    sections.forEach(sec => {
+        const element = document.getElementById(sec);
+
+        if(sec === id){
+            element.classList.toggle("show");
+        } else {
+            element.classList.remove("show");
+        }
+    });
+}
+
+window.addEventListener("load", function () {
     document.body.classList.add("page-enter-active");
 });
 </script>
 
-    <main class="container">
-        <!-- شبكة الأزرار الأربعة الرئيسية -->
-        <div class="button-grid">
-            <!-- الزر الأول بالرابط المحدث -->
-            <a href="https://docs.google.com/forms/d/18MKUIbE2f_J7_SKizM0z0Xp03JtGXwKWOYLLi7mzQAQ/edit?ts=656b3442" target="_blank" class="btn">تقديم وزارة العدل</a>
-            
-            <button onclick="toggleSection('leadership')" class="btn">قيادة وزارة العدل</button>
-            
-            <button onclick="toggleSection('services')" class="btn">خدمات وزارة العدل</button>
-            
-            <!-- الزر الرابع بالرابط المحدث -->
-            <a href="https://forms.gle/rYJ3eFDavZpHdBeHA" target="_blank" class="btn">تقديم قضية</a>
-        </div>
-
-        <!-- الزر الخامس: طلب محامي (رابط ديسكورد) -->
-        <div class="lawyer-area">
-            <a href="https://discord.com" target="_blank" class="btn btn-lawyer">طلب محامي</a>
-        </div>
-
-        <!-- بطاقات عرض المعلومات (تظهر عند الضغط) -->
-        <div id="leadership" class="info-card" style="display: none;">
-            <div class="card-header">| قيادة وزارة العدل</div>
-            <div class="row"><span>وزير العدل | KR</span> <strong>عبد العزيز الخالدي</strong></div>
-            <div class="row"><span>نائب وزير العدل | KR</span> <strong>ابو صالح العتيبي</strong></div>
-            <div class="row"><span>مستشار وزير العدل</span> <strong>-</strong></div>
-        </div>
-
-        <div id="services" class="info-card" style="display: none;">
-            <div class="card-header">| خدمات الموقع</div>
-            <ul class="services-list">
-                <li>• طلب محامي سواء لإستشاره او قضية</li>
-                <li>• رفع قضية</li>
-                <li>• التقديم للوزارة</li>
-                <li>• حالة تقديم الكليات والدورات العدلية</li>
-            </ul>
-        </div>
-
-        <!-- قسم الحالات السفلي المحدث بالتنسيق المتناسق -->
-        <footer class="status-footer">
-            <h3>حالات الكليات والدورات العدلية :</h3>
-            <div class="status-line"><span>كلية القضاة:</span> <span class="red">مغلق</span></div></li>
-            <div class="status-line"><span>كلية المحاماة:</span> <span class="red">مغلق</span></div></li>
-            <div class="status-line"><span>دورة العدالة:</span> <span class="red">مغلقة</span></div></li>
-            <div class="status-line"><span>التقديم العادي للوزارة:</span> <span class="green-text">مفتوح</span></div></li>
-        </footer>
-    </main>
-
-    <script>
-        function toggleSection(id) {
-            const leadership = document.getElementById('leadership');
-            const services = document.getElementById('services');
-            
-            // إخفاء الأقسام غير المطلوبة وإظهار القسم المختار بضغطة زر
-            if(id === 'leadership') {
-                services.style.display = 'none';
-                leadership.style.display = (leadership.style.display === 'none') ? 'block' : 'none';
-            } else {
-                leadership.style.display = 'none';
-                services.style.display = (services.style.display === 'none') ? 'block' : 'none';
-            }
-        }
-    </script>
 </body>
 </html>

@@ -1,4 +1,6 @@
-/* التنسيق الأساسي */
+/* =====================
+   الأساسي
+===================== */
 body {
     background-color: hsl(150, 39%, 28%);
     margin: 0;
@@ -6,11 +8,14 @@ body {
     color: white;
     direction: rtl;
     font-family: sans-serif;
+    font-weight: bold; /* جعل كل النص عريض */
 }
 
-/* المستطيل العلوي المطور (بشكل البطاقة) */
+/* =====================
+   الهيدر
+===================== */
 .header-container {
-    padding: 20px; /* تقليل المسافة في الهواتف */
+    padding: 20px;
     display: flex;
     justify-content: center;
 }
@@ -21,47 +26,38 @@ body {
     width: 100%;
     max-width: 800px;
     padding: 25px 15px;
-    border-radius: 30px; /* تقليل الانحناء قليلاً ليناسب الشاشات الصغيرة */
+    border-radius: 30px;
     box-shadow: 0 10px 30px rgba(0,0,0,0.5);
     text-align: center;
 }
 
-.top-main-card h1 {
-    margin: 0;
-    font-size: clamp(1.2rem, 5vw, 1.6rem); /* خط مرن يصغر مع الشاشة */
-    font-weight: bold;
-}
-
-/* الحاوية والأزرار */
+/* =====================
+   الحاوية
+===================== */
 .container {
     max-width: 700px;
     margin: auto;
     padding: 15px;
 }
 
+/* =====================
+   شبكة الأزرار
+===================== */
 .button-grid {
     display: grid;
-    grid-template-columns: 1fr 1fr; /* عمودين للكمبيوتر والتابلت */
+    grid-template-columns: 1fr 1fr;
     gap: 15px;
 }
 
-/* --- تعديل خاص للهواتف الذكية --- */
-@media (max-width: 480px) {
-    .button-grid {
-        grid-template-columns: 1fr; /* زر واحد في كل سطر للهاتف لسهولة الضغط */
-    }
-    .top-main-card {
-        border-radius: 20px;
-    }
-}
-
+/* =====================
+   الأزرار
+===================== */
 .btn {
     background-color: #1e1e1e;
     color: #21DE66;
     border: 2px solid #21DE66;
     padding: 18px;
     font-size: 17px;
-    font-weight: bold;
     border-radius: 15px;
     cursor: pointer;
     text-decoration: none;
@@ -76,65 +72,72 @@ body {
     color: #000;
 }
 
-.btn-lawyer {
-    background-color: #ffffff;
-    color: #000;
-    border: none;
-    width: 100%;
-    margin-top: 15px;
-}
-
-/* بطاقات المعلومات */
+/* =====================
+   مربعات المعلومات
+===================== */
 .info-card {
-    background-color: #ffffff;
-    color: #000;
+    background-color: #7F9C96;
+    color: white;
     margin-top: 25px;
     padding: 20px;
-    border-radius: 25px;
-    box-shadow: 0 8px 25px rgba(0,0,0,0.4);
-    text-align: right;
-}
-
-.row {
-    display: flex;
-    justify-content: space-between;
-    padding: 12px 0;
-    border-bottom: 1px solid #eee;
-    font-size: 15px;
-}
-
-/* تذييل الصفحة */
-.status-footer {
-    margin-top: 40px;
-    background: #1e1e1e;
-    padding: 20px;
     border-radius: 20px;
+    line-height: 1.8;
+    opacity: 0;
+    transform: translateY(10px);
+    filter: blur(10px);
+    transition: all 0.4s ease;
+    display: none;
 }
 
+/* الصندوق الأسود للحالات */
+.dark-card {
+    background-color: #111;
+}
+
+/* عند الظهور */
+.info-card.show {
+    display: block;
+    opacity: 1;
+    transform: translateY(0);
+    filter: blur(0);
+}
+
+/* الحالات */
 .status-line {
     display: flex;
     justify-content: space-between;
-    max-width: 100%;
-    margin: 10px auto;
-    font-size: 16px;
+    margin: 10px 0;
 }
 
-.red { color: #ff4d4d; font-weight: bold; }
-.green-text { color: #21DE66; font-weight: bold; }
-/* الحالة الأساسية قبل الظهور */
+.red {
+    color: #ff4d4d;
+}
+
+.green-text {
+    color: #21DE66;
+}
+
+/* =====================
+   انيميشن دخول الصفحة
+===================== */
 .page-enter {
     opacity: 0;
     filter: blur(15px);
     transform: scale(1.02);
 }
 
-/* بعد تحميل الصفحة */
 .page-enter-active {
     opacity: 1;
     filter: blur(0);
     transform: scale(1);
-    transition: 
-        opacity 0.8s ease,
-        filter 0.8s ease,
-        transform 0.8s ease;
+    transition: 0.8s ease;
+}
+
+/* =====================
+   الهاتف
+===================== */
+@media (max-width: 480px) {
+    .button-grid {
+        grid-template-columns: 1fr;
+    }
 }
