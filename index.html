@@ -51,37 +51,46 @@
         <h2>شرح خدمات الوزارة والأنظمة</h2>
         <p>
             <strong>شرح رفع قضية :</strong><br>
-            - للدخول على تقديم القضية وكتابة البيانات المطلوبة.<br>
+            - الدخول على تقديم القضية وكتابة البيانات المطلوبة.<br>
             - شرح القضية بالتفصيل.<br>
-            - ارفاق الادلة، وفي حال طلب القاضي تسليمها له.<br>
-            - يمنع رفض قضية ضد مجرم من الدرجة 3، فهي من مهمة وزارة الداخلية.<br>
-            - النتيجة تصلك عبر الخاص، يرجى التأكد من خاصك مفتوح.<br>
-            - يجب حضور المواعيد الخاصة بالقضية.<br><br>
+            - ارفاق الادلة وتسليمها للقاضي عند الطلب.<br>
+            - يمنع رفض قضية ضد مجرم درجة 3.<br>
+            - النتيجة تصلك عبر الخاص.<br>
+            - يجب حضور مواعيد القضية.<br><br>
 
             <strong>التقديم للوزارة أو الكليات :</strong><br>
-            - الالتزام بالقوانين ونموذج التقديم.<br>
-            - انتظار النتيجة وعدم ازعاج المسؤولين.<br>
-            - في حال تأخر النتيجة 48 ساعة، التواصل مع إدارة القبول.<br><br>
+            - الالتزام بالقوانين.<br>
+            - انتظار النتيجة.<br>
+            - بعد 48 ساعة يمكن التواصل مع الإدارة.<br><br>
 
             <strong>طلب محامي :</strong><br>
             - الالتزام بالنموذج.<br>
-            - الالتزام بدفع المبلغ المحدد.<br>
-            - طرح الاستشارة القانونية بخاص المحامي بشكل واضح ورسمي.
+            - دفع المبلغ المحدد.<br>
+            - طرح الاستشارة بشكل رسمي.
         </p>
     </div>
 
     <!-- السلايدر -->
     <div class="slider-container">
         <div class="slider">
+
             <div class="slide active">
                 <img src="صورة من محاكمة.png" alt="">
                 <div class="slide-text">من احد المحاكم</div>
             </div>
+
             <div class="slide">
                 <img src="صورة من حملة.png" alt="">
                 <div class="slide-text">من احد حملات الوزارة</div>
             </div>
+
+            <div class="slide">
+                <img src="صورة زيارة نائب الرئيس.png" alt="">
+                <div class="slide-text">زيارة نائب الرئيس للمحكمة</div>
+            </div>
+
         </div>
+
         <button class="prev">&#10094;</button>
         <button class="next">&#10095;</button>
     </div>
@@ -91,27 +100,21 @@ function toggleContent(index){
     let boxes = document.querySelectorAll(".content-box");
     boxes.forEach((box, i) => {
         if(i === index){
-            if(box.classList.contains("show")){
-                box.classList.remove("show");
-            } else {
-                box.classList.add("show");
-            }
+            box.classList.toggle("show");
         } else {
             box.classList.remove("show");
         }
     });
 }
 
-// السلايدر مع تمويه smooth fade
+// السلايدر بتمويه سلس
 let slides = document.querySelectorAll(".slide");
 let current = 0;
 
 function showSlide(newIndex){
     slides[current].classList.remove("active");
-    slides[current].style.opacity = 0;
     current = newIndex;
     slides[current].classList.add("active");
-    slides[current].style.opacity = 1;
 }
 
 document.querySelector(".next").onclick = function(){
@@ -121,15 +124,6 @@ document.querySelector(".next").onclick = function(){
 document.querySelector(".prev").onclick = function(){
     showSlide((current - 1 + slides.length) % slides.length);
 };
-
-// تغيير لون الأزرار عند hover و active
-let allButtons = document.querySelectorAll("button");
-allButtons.forEach(btn => {
-    btn.addEventListener("mouseenter", ()=>{ btn.style.background = "#E3DBBB"; });
-    btn.addEventListener("mouseleave", ()=>{ btn.style.background = ""; });
-    btn.addEventListener("mousedown", ()=>{ btn.style.background = "#E3DBBB"; });
-    btn.addEventListener("mouseup", ()=>{ btn.style.background = ""; });
-});
 </script>
 
 </body>
