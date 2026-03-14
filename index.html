@@ -1,217 +1,342 @@
 <!DOCTYPE html>
 <html lang="ar">
 <head>
-    <meta charset="UTF-8">
-    <title>وزارة العدل KR</title>
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+<meta charset="UTF-8">
+<title>وزارة العدل KR</title>
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
-    <!-- خط Cairo -->
-    <link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
-    <!-- Font Awesome للأيقونات -->
-    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
-    <link rel="stylesheet" href="style.css">
+<link href="https://fonts.googleapis.com/css2?family=Cairo:wght@700;800&display=swap" rel="stylesheet">
+<link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.0/css/all.min.css">
+<link rel="stylesheet" href="style.css">
+
 </head>
 <body>
 
-<!-- أزرار التنقل العلوية -->
-<div class="top-nav">
-    <button onclick="showPage('home')" class="nav-btn active">الرئيسية</button>
-    <button onclick="showPage('history')" class="nav-btn">تاريخ وزارة العدل</button>
+<!-- Loader -->
+<div id="loader">
+<div class="loader-content">
+<i class="fa-solid fa-scale-balanced"></i>
+<h2>وزارة العدل</h2>
+</div>
+</div>
+
+<div class="gov-bar">
+<div class="gov-logo">
+<i class="fa-solid fa-scale-balanced"></i>
+<span>وزارة العدل KR</span>
+</div>
+<div class="gov-menu">
+<button onclick="showPage(event,'home')" class="nav-btn active">
+<i class="fa-solid fa-house"></i> الرئيسية
+</button>
+<button onclick="showPage(event,'leaders')" class="nav-btn">
+<i class="fa-solid fa-users"></i> قيادة الوزارة
+</button>
+<button onclick="showPage(event,'status')" class="nav-btn">
+<i class="fa-solid fa-file-circle-check"></i> حالة التقديمات
+</button>
+<button onclick="showPage(event,'systems')" class="nav-btn">
+<i class="fa-solid fa-book"></i> الأنظمة والخدمات
+</button>
+<button onclick="showPage(event,'history')" class="nav-btn">
+<i class="fa-solid fa-landmark"></i> تاريخ الوزارة
+</button>
+</div>
 </div>
 
 <!-- الصفحة الرئيسية -->
 <div id="home" class="page active-page">
 
-    <div class="header-box">
-        <h1>موقع وزارة العدل في سيرفر KR</h1>
-        <p>موقع يقدم لك خدمات وزارة العدل في سيرفر KR ، وأن تتعرف على الوزارة.</p>
-    </div>
+<div class="hero">
+<h1 id="heroText">نخدم العدالة ونحمي الحقوق</h1>
+<p>الموقع الرسمي لوزارة العدل في سيرفر KR</p>
+</div>
 
-    <div class="buttons">
+<!-- تنويه Discord -->
+<div class="discord-notice">
+<i class="fa-brands fa-discord"></i>
+<span>تنويه: هذا الموقع لوزارة العدل في سيرفر KR، وتدار جميع الأشياء من سيرفر الدسكورد</span>
+</div>
 
-        <button onclick="window.open('https://docs.google.com/forms/d/18MKUIbE2f_J7_SKizM0z0Xp03JtGXwKWOYLLi7mzQAQ/edit?ts=656b3442','_blank')">
-            <span class="btn-icon"><i class="fa-solid fa-building"></i></span>
-            <span class="btn-text">تقديم وزارة العدل</span>
-        </button>
+<div class="buttons">
+<button onclick="window.open('https://docs.google.com/forms/d/18MKUIbE2f_J7_SKizM0z0Xp03JtGXwKWOYLLi7mzQAQ/edit?ts=656b3442','_blank')">
+<i class="fa-solid fa-building"></i>
+تقديم وزارة العدل
+</button>
+<button onclick="window.open('https://forms.gle/rYJ3eFDavZpHdBeHA','_blank')">
+<i class="fa-solid fa-gavel"></i>
+تقديم قضية
+</button>
+<button onclick="window.open('https://discord.com/channels/851534602576461854/915947677240426607','_blank')">
+<i class="fa-solid fa-scale-balanced"></i>
+طلب محامي
+</button>
+</div>
 
-        <button onclick="toggleContent(0)">
-            <span class="btn-icon"><i class="fa-solid fa-user-tie"></i></span>
-            <span class="btn-text">قيادة وزارة العدل</span>
-        </button>
+<!-- إحصائيات -->
+<div class="stats">
+<div class="stat-box">
+<i class="fa-solid fa-gavel"></i>
+<h3>عدد القضاة</h3>
+<p>2</p>
+</div>
+<div class="stat-box">
+<i class="fa-solid fa-user-tie"></i>
+<h3>عدد القياديين حاليا</h3>
+<p>2</p>
+</div>
+<div class="stat-box">
+<i class="fa-solid fa-users"></i>
+<h3>زوار الموقع</h3>
+<p id="visitorCount">0</p>
+</div>
+</div>
 
-        <button onclick="window.open('https://forms.gle/rYJ3eFDavZpHdBeHA','_blank')">
-            <span class="btn-icon"><i class="fa-solid fa-gavel"></i></span>
-            <span class="btn-text">تقديم قضية</span>
-        </button>
+<!-- Slider -->
+<div class="slider">
+<button class="slide-btn left" onclick="prevSlide()">
+<i class="fa-solid fa-arrow-left"></i>
+</button>
+<div class="slides">
+<img src="صورة من محاكمة.png" class="slide active">
+<img src="صورة من حملة.png" class="slide">
+<img src="صورة زيارة نائب الرئيس.png" class="slide">
+<img src="صورة نائب وزير العدل ابو صالح.png" class="slide">
+<img src="صورة وزير العدل عز.png" class="slide">
+</div>
+<button class="slide-btn right" onclick="nextSlide()">
+<i class="fa-solid fa-arrow-right"></i>
+</button>
+</div>
 
-        <button onclick="toggleContent(1)">
-            <span class="btn-icon"><i class="fa-solid fa-folder-open"></i></span>
-            <span class="btn-text">حالة التقديمات والكليات العدلية</span>
-        </button>
+</div>
 
-        <button onclick="window.open('https://discord.com/channels/851534602576461854/915947677240426607','_blank')">
-            <span class="btn-icon"><i class="fa-solid fa-scale-balanced"></i></span>
-            <span class="btn-text">طلب محامي</span>
-        </button>
+<!-- صفحة القيادة -->
+<div id="leaders" class="page">
+<div class="header-box"><h1>قيادة وزارة العدل</h1></div>
+<div class="leaders-grid">
+<div class="leader-card green-card">
+<i class="fa-solid fa-crown"></i>
+<h3>وزير العدل</h3>
+<p>عبد العزيز الخالدي</p>
+</div>
+<div class="leader-card green-card">
+<i class="fa-solid fa-user-shield"></i>
+<h3>نائب وزير العدل</h3>
+<p>ابو صالح العتيبي</p>
+</div>
+<div class="leader-card green-card">
+<i class="fa-solid fa-scale-balanced"></i>
+<h3>مستشار وزير العدل</h3>
+<p>لايوجد</p>
+</div>
+</div>
+</div>
 
-        <button onclick="toggleContent(2)">
-            <span class="btn-icon"><i class="fa-solid fa-book"></i></span>
-            <span class="btn-text">شرح خدمات الوزارة والأنظمة</span>
-        </button>
+<!-- صفحة التقديمات -->
+<div id="status" class="page">
+<div class="header-box">
+<h1>حالة التقديمات والكليات العدلية</h1>
+</div>
+<div class="applications-container">
+<div class="app-card open">
+<i class="fa-solid fa-building-columns"></i>
+<h3>التقديم لوزارة العدل</h3>
+<p class="status-text open-text">
+<i class="fa-solid fa-circle-check"></i>
+مفتوح حالياً
+</p>
+</div>
+<div class="app-card closed">
+<i class="fa-solid fa-scale-balanced"></i>
+<h3>كلية القضاة</h3>
+<p class="status-text closed-text">
+<i class="fa-solid fa-circle-xmark"></i>
+مغلق حالياً
+</p>
+</div>
+<div class="app-card closed">
+<i class="fa-solid fa-user-tie"></i>
+<h3>كلية المحاماة</h3>
+<p class="status-text closed-text">
+<i class="fa-solid fa-circle-xmark"></i>
+مغلق حالياً
+</p>
+</div>
+<div class="app-card closed">
+<i class="fa-solid fa-book"></i>
+<h3>دورة العدالة</h3>
+<p class="status-text closed-text">
+<i class="fa-solid fa-circle-xmark"></i>
+مغلق حالياً
+</p>
+</div>
+</div>
+</div>
 
-    </div>
-
-    <div class="content-box">
-        <h2>قيادة وزارة العدل KR</h2>
-        <ul>
-            <li>وزير العدل : عبد العزيز الخالدي</li>
-            <li>نائب وزير العدل : ابو صالح العتيبي</li>
-            <li>مستشار وزير العدل : لايوجد</li>
-        </ul>
-    </div>
-
-    <div class="content-box">
-        <h2>حالة التقديمات والكليات العدلية</h2>
-        <ul>
-            <li>التقديم العادي لوزارة العدل : مفتوح</li>
-            <li>تقديم كلية القضاة : مغلق</li>
-            <li>تقديم كلية المحاماة : مغلق</li>
-            <li>تقديم دورة العدالة : مغلق</li>
-        </ul>
-    </div>
-
-    <div class="content-box">
-        <h2>شرح خدمات الوزارة والأنظمة</h2>
-        <p>
-            <strong>شرح رفع قضية :</strong><br>
-            - الدخول على تقديم القضية وكتابة البيانات المطلوبة.<br>
-            - شرح القضية بالتفصيل.<br>
-            - ارفاق الادلة وتسليمها للقاضي عند الطلب.<br>
-            - يمنع رفض قضية ضد مجرم درجة 3.<br>
-            - النتيجة تصلك عبر الخاص.<br>
-            - يجب حضور مواعيد القضية.<br><br>
-
-            <strong>التقديم للوزارة أو الكليات :</strong><br>
-            - الالتزام بالقوانين.<br>
-            - انتظار النتيجة.<br>
-            - بعد 48 ساعة يمكن التواصل مع إدارة القبول والتسجيل<br><br>
-
-            <strong>طلب محامي :</strong><br>
-            - الالتزام بالنموذج.<br>
-            - دفع المبلغ المحدد.<br>
-            - طرح الاستشارة بشكل رسمي.
-        </p>
-    </div>
-
-    <!-- السلايدر -->
-    <div class="slider-container">
-        <div class="slider">
-
-            <div class="slide active">
-                <img src="صورة من محاكمة.png" alt="">
-                <div class="slide-text">من احد المحاكم</div>
-            </div>
-
-            <div class="slide">
-                <img src="صورة من حملة.png" alt="">
-                <div class="slide-text">من احد حملات الوزارة</div>
-            </div>
-
-            <div class="slide">
-                <img src="صورة نائب وزير العدل ابو صالح.png" alt="">
-                <div class="slide-text">نائب وزير العدل الحالي - ابو صالح</div>
-            </div>
-
-            <div class="slide">
-                <img src="صورة وزير العدل عز.png" alt="">
-                <div class="slide-text">وزير العدل الحالي - عبدالعزيز</div>
-            </div>
-
-            <div class="slide">
-                <img src="صورة زيارة نائب الرئيس.png" alt="">
-                <div class="slide-text">زيارة نائب الرئيس للمحكمة</div>
-            </div>
-
-        </div>
-
-        <button class="prev">&#10094;</button>
-        <button class="next">&#10095;</button>
-    </div>
-
+<!-- صفحة الأنظمة -->
+<div id="systems" class="page">
+<div class="header-box">
+<h1>شرح خدمات الوزارة والأنظمة</h1>
+</div>
+<div class="systems-container">
+<div class="system-card">
+<h3><i class="fa-solid fa-gavel"></i> شرح رفع قضية</h3>
+<ul>
+<li>الدخول إلى نموذج تقديم القضية.</li>
+<li>كتابة جميع البيانات المطلوبة بدقة.</li>
+<li>شرح القضية بالتفصيل.</li>
+<li>إرفاق الأدلة وتسليمها للقاضي عند الطلب.</li>
+<li>الالتزام بحضور موعد القضية.</li>
+<li>تصلك النتيجة عبر الرسائل الخاصة.</li>
+</ul>
+</div>
+<div class="system-card">
+<h3><i class="fa-solid fa-user-check"></i> التقديم للوزارة أو الكليات</h3>
+<ul>
+<li>الالتزام بجميع القوانين والأنظمة.</li>
+<li>تعبئة نموذج التقديم بدقة.</li>
+<li>انتظار نتيجة القبول.</li>
+<li>بعد 48 ساعة يمكن التواصل مع إدارة القبول.</li>
+</ul>
+</div>
+<div class="system-card">
+<h3><i class="fa-solid fa-scale-balanced"></i> طلب محامي</h3>
+<ul>
+<li>الالتزام بنموذج طلب المحامي.</li>
+<li>دفع الرسوم المحددة للخدمة.</li>
+<li>شرح الاستشارة القانونية بشكل واضح.</li>
+</ul>
+</div>
+</div>
 </div>
 
 <!-- صفحة التاريخ -->
-<div id="history" class="page history-page">
-
-    <div class="header-box">
-        <h1>✦ تاريخ وزارة العدل ✦</h1>
-    </div>
-
-    <div class="content-box show" style="opacity:1;max-height:none;">
-        <p>
-<strong>يرجع تاريخ وزارة العدل إلى تاريخ انشاء الدولة (07 يناير 2021 م) الموافق (23 جمادى أولى 1442 هـ).</strong><br><br>
-تبدأ احداث الوزارة بوزرائها وقيادتها، وبدت الوزارة بالتحسن من عام 2023.<br><br>
-عين 2_zd وزيرا للعدل، وعين بعدها ابو الطيب نائب لوزير العدل، وعين 8io0 مستشار للوزير.<br><br>
-وأعفي 2_zd من منصبه كذلك أعفي 8io0 من منصبه، وتم تعيين هاشم بمنصب وزيرا للعدل وبعد فترة تم تعيين ولد نهد بمنصب مستشار وزير العدل.<br><br>
-ثم تم تعيين ابو ناجي أو مسفر بمنصب مستشار وزير العدل، وإعفاء هاشم من منصبه كوزيرا للعدل.<br><br>
-وبعد فترة تم تعيين او سلمة وزيرا للعدل، وعُيّن علي القحطاني نائبا لوزير العدل.<br><br>
-وثم عين معالي وزير العدل علي القحطاني، وتعيين مهند الملقب بشايب سكاكا نائبا لوزير العدل، وتم تعيين مهند الملقب ببينكو كمستشارا لوزير العدل.<br><br>
-أعفي نائب وزير العدل مهند الملقب بشايب سكاكا من منصبه وعُيَّن مهند الملقب ببينكو كنائب للوزير، وتعيين عبد العزيز الخالدي ونواف الملقب بسير فلاك مستشارين لوزير العدل.<br><br>
-أُعفي مستشار وزير العدل نواف الملقب بسيرفلاك بناء على طلبه.<br><br>
-وتعيين مهند الملقب ببينكو بمنصب وزير العدل بعد استقالة علي القحطاني من منصبه، وتعيين عبد العزيز الخالدي نائباَّ لوزير العدل، وتعيين بندر الشريف مستشار للوزير.<br><br>
-إعفاء بندر الشريف من منصبه كمستشارا لوزير العدل، وتم تعيين بعد فترة ابو صالح العتيبي بمنصب مستشار وزير العدل.<br><br>
-إعفاء مهند الملقب ببينكو من منصبه وزارة العدل، وتعيين عبد العزيز الخالدي وزير العدل وهو الوزير الحالي لها، وتعيين ابو صالح العتيبي نائبا لوزير العدل وهو النائب الحالي لها.
-        </p>
-    </div>
-
+<div id="history" class="page">
+<div class="header-box"><h1>تاريخ وزارة العدل</h1></div>
+<div class="history-bg">
+<div class="content-box show">
+<p>
+يرجع تاريخ وزارة الى تاريخ انشاء الدولة ( 07 يناير 2021 م ) الموافق ( 23 جمادى أولى 1442 هـ ) .
+تبدأ احداث الوزارة بوزرائها وقيادتها ، وبدت الوزارة بالتحسن من عام 2023
+عين 2_zd وزيرا للعدل ، وعين بعدها ابو الطيب نائب لوزير العدل ، وعين 8io0 مستشار للوزير
+وأعفي 2_zd من منصبه كذلك اعفي 8io0 من منصبه ، وتم تعيين هاشم بمنصب وزيرا للعدل وبعد فترة تم تعيين ولد نهد بمنصب مستشار وزير العدل
+ثم تم تعيين ابو ناجي او مسفر بمنصب مستشار وزير العدل ، وإعفاء هاشم من منصبه كوزيرا للعدل
+وبعد فترة تم تعيين او سلمة وزيرا للعدل ، وعُيّن علي القحطاني نائبا لوزير العدل
+وثم عين معالي وزير العدل علي القحطاني ، وتعيين مهند الملقب بشايب سكاكا نائبا لوزير العدل ، وتم تعيين مهند الملقب ببينكو كمستشارا لوزير العدل
+أعفي نائب وزير العدل مهند الملقب بشايب سكاكا من منصبه وعُيَّن مهند الملقب ببينكو كنائب للوزير ، وتعيين عبد العزيز الخالدي ونواف الملقب بسير فلاك مستشارين لوزير العدل
+أُعفي مستشار وزير العدل نواف الملقب بسيرفلاك بناء على طلبه
+وتعيين مهند الملقب ببينكو بمنصب وزير العدل بعد استقالة علي القحطاني من منصبه ، وتعيين عبد العزيز الخالدي نائباَّ لوزير العدل ، وتعيين بندر الشريف مستشار للوزير
+إعفاء بندر الشريف من منصبه كمستشارا لوزير العدل ، وتم تعيين بعد فترة ابو صالح العتيبي بمنصب مستشار وزير العدل
+إعفاء مهند الملقب ببينكو من منصبه كوزيرً للعدل ، وتعيين عبد العزيز الخالدي وزير العدل وهو الوزير الحالي لها ، وتعيين ابو صالح العتيبي نائبا لوزير العدل وهو النائب الحالي لها
+</p>
+</div>
+</div>
 </div>
 
+<!-- Footer -->
+<footer class="footer">
+<div class="footer-content">
+<div class="footer-section">
+<h3><i class="fa-solid fa-scale-balanced"></i> وزارة العدل KR</h3>
+<p>المنصة الرسمية لوزارة العدل في سيرفر KR.</p>
+</div>
+<div class="footer-section">
+<h3>روابط سريعة</h3>
+<p>الرئيسية</p>
+<p>الأنظمة</p>
+<p>التقديمات</p>
+</div>
+<div class="footer-section">
+<h3>التواصل</h3>
+<p><i class="fa-brands fa-discord"></i> Discord</p>
+</div>
+</div>
+<div class="footer-bottom">
+جميع الحقوق محفوظة © وزارة العدل KR
+</div>
+</footer>
+
 <script>
-function toggleContent(index){
-    let boxes = document.querySelectorAll("#home .content-box");
-    boxes.forEach((box, i) => {
-        if(i === index){
-            box.classList.toggle("show");
-        } else {
-            box.classList.remove("show");
-        }
-    });
+
+// Loader
+window.onload = function(){
+setTimeout(()=>{
+document.getElementById("loader").style.display="none"
+},2000)
+initVisitors()
 }
 
-// السلايدر
-let slides = document.querySelectorAll(".slide");
-let current = 0;
-
-function showSlide(newIndex){
-    slides[current].classList.remove("active");
-    current = newIndex;
-    slides[current].classList.add("active");
+// انتقال الصفحات مع تمويه
+function showPage(e,pageId){
+document.querySelectorAll(".page").forEach(p=>{
+p.style.filter="blur(4px)";
+p.style.opacity="0";
+setTimeout(()=>{p.classList.remove("active-page")},300)
+})
+setTimeout(()=>{
+document.getElementById(pageId).classList.add("active-page")
+document.getElementById(pageId).style.opacity="1"
+document.getElementById(pageId).style.filter="blur(0)"
+},350)
+document.querySelectorAll(".nav-btn").forEach(b=>{ b.classList.remove("active") })
+e.target.classList.add("active")
 }
 
-document.querySelector(".next").onclick = function(){
-    showSlide((current + 1) % slides.length);
-};
-
-document.querySelector(".prev").onclick = function(){
-    showSlide((current - 1 + slides.length) % slides.length);
+// Slider
+let currentSlide=0
+const slides=document.querySelectorAll(".slide")
+function showSlide(index){
+slides.forEach(s=>s.classList.remove("active"))
+slides[index].classList.add("active")
+}
+function nextSlide(){
+currentSlide++
+if(currentSlide>=slides.length){currentSlide=0}
+showSlide(currentSlide)
+}
+function prevSlide(){
+currentSlide--
+if(currentSlide<0){currentSlide=slides.length-1}
+showSlide(currentSlide)
 }
 
-// تبديل الصفحات
-function showPage(pageId){
-    const page = document.getElementById(pageId);
-
-    document.querySelectorAll(".page").forEach(p => p.classList.remove("active-page"));
-    page.classList.add("active-page");
-
-    document.querySelectorAll(".nav-btn").forEach(b => b.classList.remove("active"));
-    event.target.classList.add("active");
-
-    // إضافة تمويه عند دخول صفحة التاريخ
-    if(pageId === 'history'){
-        page.classList.add("fade-in");
-        setTimeout(() => page.classList.remove("fade-in"), 1000);
-    }
+// عداد الزوار
+function initVisitors(){
+let count = localStorage.getItem("visitors")
+if(!count){count=1}else{count=parseInt(count)+1}
+localStorage.setItem("visitors",count)
+document.getElementById("visitorCount").innerText=count
 }
+
+</script>
+<script>
+
+// تغيير نص العنوان كل 3 ثواني
+
+const heroTexts = [
+"نخدم العدالة ونحمي الحقوق",
+"العدل أساس الحكم",
+"موقع وزارة العدل KR",
+"قيادة عظيمة وحكيمة"
+]
+
+let heroIndex = 0
+
+function changeHeroText(){
+
+heroIndex++
+
+if(heroIndex >= heroTexts.length){
+heroIndex = 0
+}
+
+document.getElementById("heroText").innerText = heroTexts[heroIndex]
+
+}
+
+setInterval(changeHeroText,3000)
+
 </script>
 
 </body>
