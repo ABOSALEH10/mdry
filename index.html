@@ -51,6 +51,10 @@
 <i class="fa-solid fa-medal"></i> رتب ومناصب الوزارة
 </button>
 
+<button onclick="toggleDarkMode()" class="nav-btn theme-toggle">
+<i id="themeIcon" class="fa-solid fa-moon"></i>
+</button>
+
 </div>
 </div>
 
@@ -103,6 +107,30 @@
 <p id="visitorCount">0</p>
 </div>
 
+</div>
+
+<div class="faq-container">
+    <h2 style="text-align:center; margin-bottom:20px; color:#0b7a5c;">الأسئلة الشائعة</h2>
+    
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>كيف يمكنني الانضمام لوزارة العدل؟</span>
+            <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-answer">
+            <p>يمكنك التقديم عبر ضغط زر "تقديم وزارة العدل" وملء النموذج المطلوب، مع التأكد من متابعة صفحة "حالة التقديمات".</p>
+        </div>
+    </div>
+
+    <div class="faq-item">
+        <div class="faq-question" onclick="toggleFaq(this)">
+            <span>كم تستغرق مراجعة القضايا؟</span>
+            <i class="fa-solid fa-plus"></i>
+        </div>
+        <div class="faq-answer">
+            <p>يتم مراجعة الطلبات خلال 24 إلى 48 ساعة من تاريخ التقديم عبر الديسكورد الرسمي.</p>
+        </div>
+    </div>
 </div>
 
 <div class="slider">
@@ -395,6 +423,12 @@ setTimeout(()=>{
 document.getElementById("loader").style.display="none"
 },2000)
 initVisitors()
+
+// تفعيل الوضع الليلي إذا كان مخزناً سابقاً
+if(localStorage.getItem('theme') === 'dark'){
+    document.body.classList.add('dark-theme');
+    document.getElementById('themeIcon').classList.replace('fa-moon', 'fa-sun');
+}
 }
 
 function showPage(e,pageId){
@@ -477,6 +511,29 @@ b.classList.remove("active-switch")
 
 e.target.classList.add("active-switch")
 
+}
+
+// وظائف التحكم الجديدة (المضافة)
+function toggleDarkMode() {
+    document.body.classList.toggle('dark-theme');
+    let icon = document.getElementById('themeIcon');
+    if(document.body.classList.contains('dark-theme')){
+        icon.classList.replace('fa-moon', 'fa-sun');
+        localStorage.setItem('theme', 'dark');
+    } else {
+        icon.classList.replace('fa-sun', 'fa-moon');
+        localStorage.setItem('theme', 'light');
+    }
+}
+
+function toggleFaq(element) {
+    element.parentElement.classList.toggle('active-faq');
+    let icon = element.querySelector('i');
+    if(element.parentElement.classList.contains('active-faq')){
+        icon.classList.replace('fa-plus', 'fa-minus');
+    } else {
+        icon.classList.replace('fa-minus', 'fa-plus');
+    }
 }
 
 </script>

@@ -5,11 +5,27 @@ box-sizing:border-box;
 font-family:'Cairo',sans-serif;
 }
 
+/* الألوان الأساسية للوضع النهاري والليل */
+:root {
+    --bg-main: #f4f4f4;
+    --bg-card: white;
+    --text-main: #1f3a37;
+    --nav-bg: white;
+}
+
+.dark-theme {
+    --bg-main: #121212;
+    --bg-card: #1e1e1e;
+    --text-main: #e0e0e0;
+    --nav-bg: #181818;
+}
+
 body{
 direction:rtl;
-background:#f4f4f4;
+background: var(--bg-main);
+color: var(--text-main);
 scroll-behavior:smooth;
-transition:background .4s;
+transition:background .4s, color .4s;
 min-height:100vh;
 display:flex;
 flex-direction:column;
@@ -22,7 +38,7 @@ top:0;
 left:0;
 width:100%;
 height:100%;
-background:white;
+background: var(--bg-card);
 display:flex;
 justify-content:center;
 align-items:center;
@@ -47,7 +63,7 @@ animation:spin 2s linear infinite;
 
 /* Navbar */
 .gov-bar{
-background:white;
+background: var(--nav-bg);
 display:flex;
 justify-content:space-between;
 align-items:center;
@@ -57,12 +73,13 @@ border-bottom:2px solid #d4af37;
 position:sticky;
 top:0;
 z-index:1000;
+transition: background .4s;
 }
 
 .gov-logo{
 font-size:20px;
 font-weight:800;
-color:#1f3a37;
+color: var(--text-main);
 display:flex;
 gap:10px;
 align-items:center;
@@ -71,6 +88,7 @@ align-items:center;
 .gov-menu{
 display:flex;
 gap:20px;
+align-items: center;
 }
 
 .nav-btn{
@@ -78,11 +96,13 @@ background:none;
 border:none;
 font-size:16px;
 cursor:pointer;
-color:#1f3a37;
+color: var(--text-main);
 font-weight:700;
 padding:6px 10px;
 transition:.3s;
 }
+
+.nav-btn i { margin-left: 5px; }
 
 .nav-btn:hover{
 color:#0b7a5c;
@@ -93,16 +113,22 @@ transform:translateY(-2px);
 .hero{
 padding:90px 20px;
 text-align:center;
-background:linear-gradient(135deg, #f9f9f9 0%, #eaf6f3 100%);
+background:linear-gradient(135deg, var(--bg-card) 0%, #eaf6f3 100%);
 border-bottom:3px solid #d4af37;
 transition:background .4s;
+}
+
+.dark-theme .hero {
+    background: linear-gradient(135deg, #1a1a1a 0%, #0d2b24 100%);
 }
 
 .hero h1{
 font-size:48px;
 margin-bottom:20px;
-color:#1f3a37;
+color: var(--text-main);
 }
+
+.hero h1 i { color: #d4af37; margin-left: 10px; }
 
 /* Buttons */
 .buttons{
@@ -140,13 +166,13 @@ padding:30px;
 }
 
 .stat-box{
-background:white;
+background: var(--bg-card);
 padding:30px;
 border-radius:10px;
 width:200px;
 text-align:center;
 box-shadow:0 6px 20px rgba(0,0,0,0.1);
-transition:.3s, transform .4s;
+transition:.3s, transform .4s, background .4s;
 }
 
 .stat-box:hover{
@@ -169,7 +195,7 @@ margin-top:30px;
 }
 
 .leader-card{
-background:white;
+background: var(--bg-card);
 width:400px;
 padding:25px;
 border-radius:12px;
@@ -186,6 +212,10 @@ box-shadow:0 12px 30px rgba(0,0,0,0.18);
 .green-card{
 background:#e6f7e9; /* أخضر فاتح */
 border-left:6px solid #1b8f3c;
+}
+
+.dark-theme .green-card {
+    background: #122918;
 }
 
 /* Slider */
@@ -220,7 +250,8 @@ opacity:1;
 position:absolute;
 top:50%;
 transform:translateY(-50%);
-background:white;
+background: var(--bg-card);
+color: var(--text-main);
 border:none;
 width:45px;
 height:45px;
@@ -254,7 +285,11 @@ filter:blur(0);
 .footer{
 background:#1f3a37;
 color:white;
-margin-top:auto; /* يضمن بقاء footer أسفل الصفحة */
+margin-top:auto;
+}
+
+.dark-theme .footer {
+    background: #000;
 }
 
 .footer-content{
@@ -267,6 +302,8 @@ flex-wrap:wrap;
 .footer-section h3{
 margin-bottom:15px;
 }
+
+.footer-section h3 i { margin-left: 8px; color: #d4af37; }
 
 .footer-bottom{
 text-align:center;
@@ -284,7 +321,7 @@ margin-top:40px;
 
 .app-card{
 width:650px;
-background:#eef6ee;
+background: var(--bg-card);
 border-radius:16px;
 padding:35px;
 text-align:center;
@@ -345,7 +382,7 @@ margin-top:40px;
 }
 
 .system-card{
-background:white;
+background: var(--bg-card);
 width:700px;
 padding:35px;
 border-radius:14px;
@@ -366,22 +403,26 @@ font-size:22px;
 }
 
 .system-card ul{
-line-height:2; /* ضبط المسافة بين الأسطر */
+list-style: none; /* إخفاء النقاط العادية لاستخدام الأيقونات */
+line-height:2.2;
 font-size:17px;
-padding-right:20px;
+padding-right:0;
+}
+
+.system-card ul li i {
+    color: #d4af37;
+    margin-left: 10px;
+    font-size: 14px;
 }
 
 /* نص صفحة التاريخ */
 #history .content-box p{
-line-height:1.9; /* مسافة جيدة بين الأسطر */
+line-height:1.9;
 padding:20px;
 text-align:justify;
 }
 
-/* Hover تمويه ناعم للبطاقات */
-.app-card, .system-card, .leader-card{
-will-change:transform;
-}
+#history .content-box p i { color: #0b7a5c; margin-left: 5px; }
 
 /* Discord notice */
 .discord-notice{
@@ -404,7 +445,6 @@ transition:all .35s ease;
 font-size:28px;
 }
 
-/* Hover effect */
 .discord-notice:hover{
 background:linear-gradient(135deg, #5865F2 0%, #6b77ff 40%, #3a97cd 100%);
 transform:translateY(-4px);
@@ -422,11 +462,15 @@ width:90%;
 box-shadow:0 6px 25px rgba(0,0,0,0.15);
 }
 
+.dark-theme .history-bg {
+    background: var(--bg-card);
+}
+
 #history .content-box p{
 line-height:1.9;
 padding:10px 20px;
 text-align:justify;
-color:#1f3a37;
+color: var(--text-main);
 }
 
 /* صفحة الرتب والمناصب */
@@ -434,6 +478,8 @@ color:#1f3a37;
 text-align:center;
 margin-top:40px;
 }
+
+.ranks-header h1 i { color: #d4af37; margin-left: 10px; }
 
 .rank-switch{
 display:flex;
@@ -446,14 +492,15 @@ margin:30px 0;
 padding:12px 25px;
 border:none;
 border-radius:10px;
-background:#e6f7e9;
+background: var(--bg-card);
+color: var(--text-main);
 font-weight:700;
 cursor:pointer;
 transition:.3s;
-}
-
-.switch-btn:hover{
-transform:translateY(-2px);
+box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+display: flex;
+align-items: center;
+gap: 8px;
 }
 
 .active-switch{
@@ -465,7 +512,7 @@ color:white;
 display:none;
 max-width:900px;
 margin:auto;
-width: 95%; /* أضفتها للتأكد من عدم خروجها عن الشاشة */
+width: 95%;
 }
 
 .active-rank{
@@ -474,13 +521,16 @@ display:block;
 
 .rank-category{
 margin:40px 0 15px 0;
-color:#1f3a37;
+color: var(--text-main);
 border-right:5px solid #d4af37;
 padding-right:10px;
+display: flex;
+align-items: center;
+gap: 10px;
 }
 
 .rank-card{
-background:white;
+background: var(--bg-card);
 padding:20px;
 border-radius:12px;
 margin-bottom:15px;
@@ -490,113 +540,73 @@ box-shadow:0 5px 18px rgba(0,0,0,0.1);
 .rank-card h3{
 margin-bottom:6px;
 color:#0b7a5c;
+display: flex;
+align-items: center;
+gap: 10px;
 }
 
 .rank-card p{
 font-size:15px;
-color:#444;
+color: var(--text-main);
 line-height:1.8;
 }
 
 /* =========================================
-   التوافق مع الشاشات (الأجهزة اللوحية والجوال)
+    إضافات الأسئلة الشائعة FAQ المضافة
+   ========================================= */
+.faq-container {
+    width: 80%;
+    margin: 40px auto;
+}
+
+.faq-item {
+    background: var(--bg-card);
+    margin-bottom: 10px;
+    border-radius: 8px;
+    overflow: hidden;
+    box-shadow: 0 4px 10px rgba(0,0,0,0.05);
+}
+
+.faq-question {
+    padding: 20px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    cursor: pointer;
+    font-weight: 700;
+}
+
+.faq-question span { display: flex; align-items: center; gap: 10px; }
+
+.faq-answer {
+    padding: 0 20px;
+    max-height: 0;
+    overflow: hidden;
+    transition: 0.3s ease-out;
+}
+
+.faq-answer p { display: flex; align-items: flex-start; gap: 10px; }
+.faq-answer p i { margin-top: 5px; color: #0b7a5c; }
+
+.active-faq .faq-answer {
+    padding: 15px 20px;
+    max-height: 150px;
+    border-top: 1px solid rgba(0,0,0,0.1);
+}
+
+/* =========================================
+    التوافق مع الشاشات
    ========================================= */
 
-/* شاشات اللابتوب الصغيرة والأجهزة اللوحية (الآيباد) */
 @media (max-width:900px){
-.gov-bar{
-flex-direction:column;
-gap:10px;
+.gov-bar{ flex-direction:column; gap:10px; }
+.gov-menu{ flex-wrap:wrap; justify-content:center; }
+.buttons, .stats{ flex-direction:column; align-items:center; }
+.slider, .system-card, .app-card, .leader-card, .faq-container{ width:95%; }
 }
 
-.gov-menu{
-flex-wrap:wrap;
-justify-content:center;
-}
-
-.buttons{
-flex-direction:column;
-align-items:center;
-}
-
-.stats{
-flex-direction:column;
-align-items:center;
-}
-
-.slider{
-width:95%;
-}
-
-.system-card{
-width:95%;
-}
-
-.app-card{
-width:95%;
-}
-
-.leader-card{
-width:90%;
-}
-}
-
-/* شاشات الجوال الذكي (المقاسات الصغيرة) */
 @media (max-width:600px){
-.hero { 
-padding: 50px 15px; 
-}
-
-.hero h1 { 
-font-size: 32px; /* تصغير العنوان الرئيسي ليناسب شاشة الجوال */
-}
-
-.discord-notice { 
-flex-direction: column; /* جعل الأيقونة فوق النص */
-text-align: center; 
-font-size: 15px; 
-padding: 15px; 
-width: 95%; 
-}
-
-.buttons button { 
-width: 100%; /* جعل أزرار الروابط بكامل عرض الشاشة لتسهيل الضغط */
-justify-content: center; 
-font-size: 16px; 
-}
-
-.slides { 
-height: 250px; /* تصغير ارتفاع السلايدر ليتناسب مع أبعاد الجوال */
-}
-
-.gov-menu { 
-gap: 10px; /* تقليل المسافة بين أزرار القائمة */
-}
-
-.nav-btn { 
-font-size: 14px; 
-padding: 5px;
-}
-
-.app-card, .system-card { 
-padding: 20px; /* تقليل الحشوة الداخلية للبطاقات */
-}
-
-.app-card h3, .system-card h3 { 
-font-size: 19px; /* تصغير عناوين البطاقات */
-}
-
-.rank-switch { 
-flex-direction: column; /* جعل أزرار التبديل بين الرتب والمناصب فوق بعضها */
-align-items: center; 
-gap: 10px; 
-}
-
-.switch-btn { 
-width: 90%; /* الأزرار تأخذ مساحة الشاشة بالكامل تقريباً */
-}
-
-.stat-box { 
-width: 95%; /* صناديق الإحصائيات بكامل العرض */
-}
+.hero h1 { font-size: 32px; }
+.discord-notice { flex-direction: column; text-align: center; font-size: 15px; padding: 15px; width: 95%; }
+.buttons button { width: 100%; justify-content: center; }
 }
