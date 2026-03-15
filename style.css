@@ -382,13 +382,12 @@ text-align:justify;
 .app-card, .system-card, .leader-card{
 will-change:transform;
 }
-/* ... كل CSS السابق يبقى كما هو ... */
 
 /* Discord notice */
-
 .discord-notice{
 display:flex;
 align-items:center;
+justify-content:center;
 gap:15px;
 background:#5865F2;
 color:white;
@@ -406,27 +405,11 @@ font-size:28px;
 }
 
 /* Hover effect */
-
 .discord-notice:hover{
-
-background:linear-gradient(
-135deg,
-#5865F2 0%,
-#6b77ff 40%,
-#3a97cd 100%
-);
-
+background:linear-gradient(135deg, #5865F2 0%, #6b77ff 40%, #3a97cd 100%);
 transform:translateY(-4px);
-
 box-shadow:0 14px 35px rgba(0,0,0,0.25);
-
 cursor:pointer;
-
-}
-
-
-.discord-notice i{
-font-size:28px;
 }
 
 /* صفحة التاريخ خلفية متعددة الألوان */
@@ -445,8 +428,8 @@ padding:10px 20px;
 text-align:justify;
 color:#1f3a37;
 }
-/* صفحة الرتب والمناصب */
 
+/* صفحة الرتب والمناصب */
 .ranks-header{
 text-align:center;
 margin-top:40px;
@@ -482,6 +465,7 @@ color:white;
 display:none;
 max-width:900px;
 margin:auto;
+width: 95%; /* أضفتها للتأكد من عدم خروجها عن الشاشة */
 }
 
 .active-rank{
@@ -514,10 +498,12 @@ color:#444;
 line-height:1.8;
 }
 
-/* التوافق مع الجوال والايباد */
+/* =========================================
+   التوافق مع الشاشات (الأجهزة اللوحية والجوال)
+   ========================================= */
 
+/* شاشات اللابتوب الصغيرة والأجهزة اللوحية (الآيباد) */
 @media (max-width:900px){
-
 .gov-bar{
 flex-direction:column;
 gap:10px;
@@ -553,5 +539,64 @@ width:95%;
 .leader-card{
 width:90%;
 }
+}
 
+/* شاشات الجوال الذكي (المقاسات الصغيرة) */
+@media (max-width:600px){
+.hero { 
+padding: 50px 15px; 
+}
+
+.hero h1 { 
+font-size: 32px; /* تصغير العنوان الرئيسي ليناسب شاشة الجوال */
+}
+
+.discord-notice { 
+flex-direction: column; /* جعل الأيقونة فوق النص */
+text-align: center; 
+font-size: 15px; 
+padding: 15px; 
+width: 95%; 
+}
+
+.buttons button { 
+width: 100%; /* جعل أزرار الروابط بكامل عرض الشاشة لتسهيل الضغط */
+justify-content: center; 
+font-size: 16px; 
+}
+
+.slides { 
+height: 250px; /* تصغير ارتفاع السلايدر ليتناسب مع أبعاد الجوال */
+}
+
+.gov-menu { 
+gap: 10px; /* تقليل المسافة بين أزرار القائمة */
+}
+
+.nav-btn { 
+font-size: 14px; 
+padding: 5px;
+}
+
+.app-card, .system-card { 
+padding: 20px; /* تقليل الحشوة الداخلية للبطاقات */
+}
+
+.app-card h3, .system-card h3 { 
+font-size: 19px; /* تصغير عناوين البطاقات */
+}
+
+.rank-switch { 
+flex-direction: column; /* جعل أزرار التبديل بين الرتب والمناصب فوق بعضها */
+align-items: center; 
+gap: 10px; 
+}
+
+.switch-btn { 
+width: 90%; /* الأزرار تأخذ مساحة الشاشة بالكامل تقريباً */
+}
+
+.stat-box { 
+width: 95%; /* صناديق الإحصائيات بكامل العرض */
+}
 }
