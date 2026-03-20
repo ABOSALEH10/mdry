@@ -121,7 +121,15 @@ transition:background .4s;
 .dark-theme .hero {
     background: linear-gradient(135deg, #1a1a1a 0%, #0d2b24 100%);
 }
-
+.dark-theme .hero {
+background: linear-gradient(
+135deg,
+rgba(25, 25, 25, 0.95) 0%,
+rgba(40, 35, 30, 0.9) 40%,
+rgba(70, 55, 40, 0.85) 70%,
+rgba(100, 75, 50, 0.8) 100%
+);
+}
 .hero h1{
 font-size:48px;
 margin-bottom:20px;
@@ -129,6 +137,31 @@ color: var(--text-main);
 }
 
 .hero h1 i { color: #d4af37; margin-left: 10px; }
+.hero{
+padding:90px 20px;
+text-align:center;
+
+/* تدرج متناسق مع الصورة (بيج + ذهبي + بني) */
+background: linear-gradient(
+135deg,
+rgba(245, 235, 220, 0.95) 0%,
+rgba(232, 210, 180, 0.9) 40%,
+rgba(210, 170, 120, 0.85) 70%,
+rgba(160, 120, 80, 0.8) 100%
+);
+
+border-bottom:3px solid #d4af37;
+transition:background .4s;
+}
+
+/* الصورة */
+.hero-image{
+width:85%;
+max-width:1000px;
+border-radius:14px;
+box-shadow:0 15px 40px rgba(120,80,40,0.35);
+margin-bottom:25px;
+}
 
 /* Buttons */
 .buttons{
