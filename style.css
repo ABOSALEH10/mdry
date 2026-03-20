@@ -118,6 +118,7 @@ border-bottom:3px solid #d4af37;
 transition:background .4s;
 }
 
+
 .dark-theme .hero {
     background: linear-gradient(135deg, #1a1a1a 0%, #0d2b24 100%);
 }
@@ -152,6 +153,23 @@ rgba(160, 120, 80, 0.8) 100%
 
 border-bottom:3px solid #d4af37;
 transition:background .4s;
+}
+.hero-image{
+opacity:0;
+transform:translateY(30px);
+animation:fadeHero 1.2s ease forwards;
+}
+
+@keyframes fadeHero{
+to{
+opacity:1;
+transform:translateY(0);
+}
+}
+.hero-image{
+border: 3px solid #d4af37;
+padding:5px;
+background:white;
 }
 
 /* الصورة */
