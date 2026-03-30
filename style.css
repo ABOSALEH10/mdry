@@ -113,7 +113,7 @@ transform:translateY(-2px);
 .hero{
 padding:90px 20px;
 text-align:center;
-background:linear-gradient(135deg, var(--bg-card) 0%, #eaf6f3 100%);
+background: var(--bg-card);
 border-bottom:3px solid #d4af37;
 transition:background .4s;
 }
@@ -142,14 +142,7 @@ color: var(--text-main);
 padding:90px 20px;
 text-align:center;
 
-/* تدرج متناسق مع الصورة (بيج + ذهبي + بني) */
-background: linear-gradient(
-135deg,
-rgba(245, 235, 220, 0.95) 0%,
-rgba(232, 210, 180, 0.9) 40%,
-rgba(210, 170, 120, 0.85) 70%,
-rgba(160, 120, 80, 0.8) 100%
-);
+
 
 border-bottom:3px solid #d4af37;
 transition:background .4s;
