@@ -12,12 +12,25 @@
 </head>
 <body>
 
-<div id="loader">
+    <div id="loader">
+
 <div class="loader-content">
+
+<div class="loader-logo">
 <i class="fa-solid fa-scale-balanced"></i>
-<h2>وزارة العدل</h2>
 </div>
+
+<div class="loader-line">
+<div class="loader-progress"></div>
 </div>
+
+<p class="loader-text">قيد التحميل ...</p>
+
+</div>
+
+</div>
+
+<div id="mainContent" class="site-hidden">
 
 <div class="gov-bar">
 <div class="gov-logo">
@@ -58,6 +71,7 @@
 </div>
 </div>
 
+<!-- بقية الموقع كما هو -->
 <div id="home" class="page active-page">
 
 <div class="hero">
@@ -107,28 +121,37 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 
 <!-- باقي الكود كما هو بدون أي تغيير -->
 
-<div class="stats">
+<div class="justice-strip">
 
-<div class="stat-box">
-<i class="fa-solid fa-gavel"></i>
-<h3>عدد القضاة</h3>
-<p>2</p>
+<div class="justice-box">
+<i class="fa-solid fa-scale-balanced"></i>
+<div>
+<h3>القضايا المنظورة</h3>
+<p><span id="casesCounter">0</span>+ قضية</p>
+</div>
 </div>
 
-<div class="stat-box">
-<i class="fa-solid fa-user-tie"></i>
-<h3>عدد القياديين حاليا</h3>
-<p>2</p>
+<div class="justice-box">
+<i class="fa-solid fa-building-columns"></i>
+<div>
+<h3>المنصة الرسمية</h3>
+<p>إدارة وتنظيم الخدمات العدلية داخل KR</p>
+</div>
 </div>
 
-<div class="stat-box">
+<div class="justice-box">
 <i class="fa-solid fa-users"></i>
+<div>
 <h3>زوار الموقع</h3>
-<p id="visitorCount">0</p>
+<p><span id="visitorCount">0</span> زائر</p>
+</div>
+</div>
+
+<div class="justice-box ministry-box">
+<p>وزارة العدل - منذ 2021 - KR</p>
 </div>
 
 </div>
-
 <div class="faq-container">
 <h2 style="text-align:center; margin-bottom:20px; color:#0b7a5c;">
 <img src="ايقون الاسئلة.png" style="width:30px; vertical-align:middle; margin-left:8px;">
@@ -178,6 +201,7 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 
 </div>
 </div>
+
 
 <div id="leaders" class="page">
 <div class="header-box"><h1>قيادة وزارة العدل</h1></div>
@@ -311,7 +335,7 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 أُعفي مستشار وزير العدل نواف الملقب بسيرفلاك بناء على طلبه
 وتعيين مهند الملقب ببينكو بمنصب وزير العدل بعد استقالة علي القحطاني من منصبه ، وتعيين عبد العزيز الخالدي نائباَّ لوزير العدل ، وتعيين بندر الشريف مستشار للوزير
 إعفاء بندر الشريف من منصبه كمستشارا لوزير العدل ، وتم تعيين بعد فترة ابو صالح العتيبي بمنصب مستشار وزير العدل
-إعفاء مهند الملقب ببينكو من منصبه كوزيرً للعدل ، وتعيين عبد العزيز الخالدي وزير العدل وهو الوزير الحالي لها ، وتعيين ابو صالح العتيبي نائبا لوزير العدل وهو النائب الحالي لها
+إعفاء مهند الملقب ببينكو من منصبه كوزيرً للعدل ، وتعيين عبد العزيز الخالدي وزير العدل وهو الوزير الحالي لها ، وتعيين ابو صالح العتيبي نائبا لوزير العدل وهو النائب الحالي لها .  واستقال بعدها وزير العدل عبد العزيز من منصبه كوزيرًا للعدل ، وعين ابو صالح العتيبي وزيرا للعدل وتعيين فويد بمنصب نائب وزير العدل .
 </p>
 </div>
 </div>
@@ -412,6 +436,8 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 
 </div>
 
+</div>
+
 <footer class="footer">
 
 <div class="footer-content">
@@ -441,19 +467,50 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 
 </footer>
 
+</div>
+
 <script>
 
 window.onload = function(){
+
+const loader = document.getElementById("loader")
+const progress = document.querySelector(".loader-progress")
+const mainContent = document.getElementById("mainContent")
+
+let width = 0
+
+const loading = setInterval(()=>{
+
+width += 1
+progress.style.width = width + "%"
+
+if(width >= 100){
+
+clearInterval(loading)
+
 setTimeout(()=>{
-document.getElementById("loader").style.display="none"
-},2000)
+
+loader.classList.add("loader-hide")
+
+mainContent.classList.add("site-show")
+
+setTimeout(()=>{
+loader.style.display = "none"
+},800)
+
+},300)
+
+}
+
+},20)
+
 initVisitors()
 
-// تفعيل الوضع الليلي إذا كان مخزناً سابقاً
 if(localStorage.getItem('theme') === 'dark'){
-    document.body.classList.add('dark-theme');
-    document.getElementById('themeIcon').classList.replace('fa-moon', 'fa-sun');
+document.body.classList.add('dark-theme')
+document.getElementById('themeIcon').classList.replace('fa-moon', 'fa-sun')
 }
+
 }
 
 function showPage(e,pageId){
@@ -534,31 +591,79 @@ document.querySelectorAll(".switch-btn").forEach(b=>{
 b.classList.remove("active-switch")
 })
 
-e.target.classList.add("active-switch")
+e.currentTarget.classList.add("active")
 
 }
 
-// وظائف التحكم الجديدة (المضافة)
-function toggleDarkMode() {
-    document.body.classList.toggle('dark-theme');
-    let icon = document.getElementById('themeIcon');
-    if(document.body.classList.contains('dark-theme')){
-        icon.classList.replace('fa-moon', 'fa-sun');
-        localStorage.setItem('theme', 'dark');
-    } else {
-        icon.classList.replace('fa-sun', 'fa-moon');
-        localStorage.setItem('theme', 'light');
-    }
+/* عداد القضايا عند الوصول له */
+
+let casesStarted = false
+
+function animateCasesCounter(){
+
+if(casesStarted) return
+casesStarted = true
+
+const counter = document.getElementById("casesCounter")
+
+let current = 0
+const target = 100
+
+const updateCounter = setInterval(()=>{
+
+current++
+
+counter.innerText = current
+
+if(current >= target){
+clearInterval(updateCounter)
 }
 
-function toggleFaq(element) {
-    element.parentElement.classList.toggle('active-faq');
-    let icon = element.querySelector('i');
-    if(element.parentElement.classList.contains('active-faq')){
-        icon.classList.replace('fa-plus', 'fa-minus');
-    } else {
-        icon.classList.replace('fa-minus', 'fa-plus');
-    }
+},20)
+
+}
+
+const counterObserver = new IntersectionObserver((entries)=>{
+
+entries.forEach(entry=>{
+
+if(entry.isIntersecting){
+
+animateCasesCounter()
+
+}
+
+})
+
+},{
+threshold:0.5
+})
+
+window.addEventListener("load",()=>{
+
+const counterElement = document.querySelector(".justice-strip")
+
+if(counterElement){
+
+counterObserver.observe(counterElement)
+
+}
+
+})
+function toggleFaq(element){
+
+const item = element.parentElement
+
+item.classList.toggle("active-faq")
+
+const icon = element.querySelector("i")
+
+if(item.classList.contains("active-faq")){
+icon.classList.replace("fa-plus","fa-minus")
+}else{
+icon.classList.replace("fa-minus","fa-plus")
+}
+
 }
 
 </script>

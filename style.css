@@ -60,7 +60,229 @@ animation:spin 2s linear infinite;
 0%{transform:rotate(0)}
 100%{transform:rotate(360deg)}
 }
+/* =========================================
+   Loader الجديد
+========================================= */
 
+#loader{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:
+linear-gradient(
+135deg,
+#f8f6f1 0%,
+#f3efe6 35%,
+#ebe3d1 70%,
+#e1d4ba 100%
+);
+display:flex;
+justify-content:center;
+align-items:center;
+z-index:999999;
+transition:opacity .8s ease, visibility .8s ease;
+overflow:hidden;
+}
+
+.dark-theme #loader{
+background:
+linear-gradient(
+135deg,
+#0f1615 0%,
+#13201d 40%,
+#1b2d28 75%,
+#243932 100%
+);
+}
+
+.loader-hide{
+opacity:0;
+visibility:hidden;
+}
+
+.loader-content{
+display:flex;
+flex-direction:column;
+align-items:center;
+justify-content:center;
+gap:25px;
+position:relative;
+z-index:2;
+}
+
+.loader-logo{
+width:130px;
+height:130px;
+border-radius:50%;
+display:flex;
+justify-content:center;
+align-items:center;
+border:2px solid rgba(11,122,92,.35);
+background:rgba(255,255,255,.45);
+backdrop-filter:blur(10px);
+box-shadow:
+0 0 25px rgba(11,122,92,.18),
+0 0 60px rgba(212,175,55,.12);
+animation:pulse 2s infinite ease-in-out;
+}
+
+.dark-theme .loader-logo{
+background:rgba(255,255,255,.04);
+border:2px solid rgba(212,175,55,.25);
+}
+
+.loader-logo i{
+font-size:58px;
+color:#0b7a5c;
+}
+
+.dark-theme .loader-logo i{
+color:#d4af37;
+}
+
+.loader-line{
+width:320px;
+height:5px;
+background:rgba(0,0,0,.08);
+border-radius:20px;
+overflow:hidden;
+position:relative;
+}
+
+.dark-theme .loader-line{
+background:rgba(255,255,255,.08);
+}
+
+.loader-progress{
+width:0%;
+height:100%;
+background:
+linear-gradient(
+90deg,
+#0b7a5c 0%,
+#17a37d 45%,
+#d4af37 100%
+);
+border-radius:20px;
+box-shadow:0 0 15px rgba(11,122,92,.45);
+transition:width .2s linear;
+}
+
+.loader-text{
+color:#0b7a5c;
+font-size:22px;
+font-weight:800;
+letter-spacing:.3px;
+}
+
+.dark-theme .loader-text{
+color:#f1f1f1;
+}
+
+/* زخارف خفيفة بالخلفية */
+
+#loader::before{
+content:"";
+position:absolute;
+width:500px;
+height:500px;
+background:radial-gradient(
+circle,
+rgba(212,175,55,.12) 0%,
+transparent 70%
+);
+top:-180px;
+right:-120px;
+}
+
+#loader::after{
+content:"";
+position:absolute;
+width:450px;
+height:450px;
+background:radial-gradient(
+circle,
+rgba(11,122,92,.12) 0%,
+transparent 70%
+);
+bottom:-180px;
+left:-120px;
+}
+
+/* حركة الشعار */
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+box-shadow:
+0 0 25px rgba(11,122,92,.18),
+0 0 60px rgba(212,175,55,.12);
+}
+
+50%{
+transform:scale(1.05);
+box-shadow:
+0 0 40px rgba(11,122,92,.28),
+0 0 80px rgba(212,175,55,.18);
+}
+
+100%{
+transform:scale(1);
+box-shadow:
+0 0 25px rgba(11,122,92,.18),
+0 0 60px rgba(212,175,55,.12);
+}
+
+}
+/* حركة خفيفة للشعار */
+
+@keyframes pulse{
+
+0%{
+transform:scale(1);
+box-shadow:
+0 0 20px rgba(0,255,170,.2),
+0 0 50px rgba(0,255,170,.15);
+}
+
+50%{
+transform:scale(1.05);
+box-shadow:
+0 0 30px rgba(0,255,170,.4),
+0 0 70px rgba(0,255,170,.25);
+}
+
+100%{
+transform:scale(1);
+box-shadow:
+0 0 20px rgba(0,255,170,.2),
+0 0 50px rgba(0,255,170,.15);
+}
+
+}
+
+/* =========================================
+   دخول الموقع بسلاسة
+========================================= */
+
+.site-hidden{
+opacity:0;
+transform:translateY(25px) scale(.985);
+filter:blur(10px);
+transition:
+opacity 1s ease,
+transform 1s ease,
+filter 1s ease;
+}
+
+.site-show{
+opacity:1;
+transform:translateY(0) scale(1);
+filter:blur(0);
+}
 /* Navbar */
 .gov-bar{
 background: var(--nav-bg);
@@ -183,12 +405,7 @@ gap:20px;
 padding:40px;
 }
 
-.buttons button{
 .main-btn{
-background:#0b7a5c;
-color:white;
-transition:.3s;
-}
 padding:18px 28px;
 font-size:18px;
 border:none;
@@ -201,6 +418,13 @@ gap:10px;
 align-items:center;
 box-shadow:0 5px 15px rgba(0,0,0,0.2);
 transition:.3s;
+}
+
+.main-btn:hover,
+.main-btn:active{
+background:#FBE8CE;
+color:#262626;
+transform:translateY(-4px);
 }
 
 .buttons button:hover,
@@ -507,7 +731,7 @@ cursor:pointer;
 
 /* صفحة التاريخ خلفية متعددة الألوان */
 .history-bg{
-background:linear-gradient(135deg, #e6f7e9 0%, #c1efd0 25%, #a8e5b8 50%, #82d995 75%, #61c870 100%);
+background:linear-gradient(135deg, #e6f7e9 0%, #c1efd0 25%, #a8e5b8 50%, #a0ecc8 75%, #82d1ac 100%);
 border-radius:16px;
 padding:20px;
 margin:20px auto;
@@ -780,4 +1004,441 @@ transition:.3s;
 
 .popup-box button:hover{
 transform:scale(1.05);
+}
+/* =========================================
+   Justice Strip
+========================================= */
+
+.justice-strip{
+width:88%;
+margin:45px auto;
+display:grid;
+grid-template-columns:repeat(4,1fr);
+gap:18px;
+}
+
+.justice-box{
+background:var(--bg-card);
+border-radius:12px;
+padding:22px;
+display:flex;
+align-items:center;
+gap:18px;
+border:1px solid rgba(0,0,0,.06);
+box-shadow:0 4px 14px rgba(0,0,0,.05);
+transition:.3s;
+position:relative;
+overflow:hidden;
+}
+
+.justice-box::before{
+content:"";
+position:absolute;
+top:0;
+right:0;
+width:100%;
+height:3px;
+background:#d4af37;
+}
+
+.justice-box:hover{
+transform:translateY(-3px);
+box-shadow:0 8px 20px rgba(0,0,0,.08);
+}
+
+.justice-box i{
+font-size:28px;
+color:#0b7a5c;
+min-width:40px;
+text-align:center;
+}
+
+.justice-box h3{
+font-size:17px;
+margin-bottom:5px;
+color:var(--text-main);
+}
+
+.justice-box p{
+font-size:15px;
+color:#666;
+line-height:1.7;
+}
+
+.dark-theme .justice-box p{
+color:#cfcfcf;
+}
+
+#casesCounter{
+font-weight:800;
+color:#0b7a5c;
+font-size:24px;
+}
+
+.ministry-box{
+justify-content:center;
+background:
+linear-gradient(
+135deg,
+#17362f 0%,
+#1f3a37 100%
+);
+border:1px solid #d4af37;
+}
+
+.ministry-box p{
+color:white !important;
+font-size:17px;
+font-weight:700;
+letter-spacing:.5px;
+}
+
+/* Responsive */
+
+@media(max-width:1000px){
+
+.justice-strip{
+grid-template-columns:1fr 1fr;
+}
+
+}
+
+@media(max-width:650px){
+
+.justice-strip{
+grid-template-columns:1fr;
+}
+
+}
+/* =========================================
+   Mobile Responsive Fixes
+========================================= */
+
+html,
+body{
+overflow-x:hidden;
+width:100%;
+}
+
+/* الحاويات الكبيرة */
+.page,
+.hero,
+.footer,
+.gov-bar,
+.systems-container,
+.applications-container,
+.leaders-grid,
+.rank-section{
+width:100%;
+max-width:100%;
+overflow:hidden;
+}
+
+/* =========================================
+   Navbar للجوال
+========================================= */
+
+@media (max-width:900px){
+
+.gov-bar{
+padding:14px 16px;
+flex-direction:column;
+align-items:stretch;
+gap:14px;
+}
+
+.gov-logo{
+justify-content:center;
+font-size:18px;
+text-align:center;
+}
+
+.gov-menu{
+display:grid;
+grid-template-columns:repeat(2,1fr);
+gap:10px;
+width:100%;
+}
+
+.nav-btn{
+width:100%;
+padding:12px 10px;
+border-radius:10px;
+background:rgba(0,0,0,.04);
+font-size:14px;
+text-align:center;
+}
+
+.dark-theme .nav-btn{
+background:rgba(255,255,255,.05);
+}
+
+.theme-toggle{
+grid-column:span 2;
+}
+
+}
+
+/* =========================================
+   Hero Section
+========================================= */
+
+@media (max-width:700px){
+
+.hero{
+padding:55px 15px;
+}
+
+.hero h1{
+font-size:30px;
+line-height:1.5;
+}
+
+.hero p{
+font-size:15px;
+line-height:1.9;
+}
+
+}
+
+/* =========================================
+   الأزرار الرئيسية
+========================================= */
+
+@media (max-width:700px){
+
+.buttons{
+flex-direction:column;
+padding:25px 15px;
+gap:15px;
+}
+
+.main-btn{
+width:100%;
+justify-content:center;
+font-size:16px;
+padding:16px;
+}
+
+}
+
+/* =========================================
+   Justice Strip
+========================================= */
+
+@media (max-width:700px){
+
+.justice-strip{
+width:95%;
+grid-template-columns:1fr;
+gap:14px;
+}
+
+.justice-box{
+padding:18px;
+}
+
+}
+
+/* =========================================
+   Discord + Theme Notices
+========================================= */
+
+@media (max-width:700px){
+
+.discord-notice,
+.theme-notice{
+width:95%;
+padding:16px;
+font-size:14px;
+line-height:1.8;
+text-align:center;
+flex-direction:column;
+}
+
+}
+
+/* =========================================
+   Slider
+========================================= */
+
+@media (max-width:700px){
+
+.slider{
+width:95%;
+}
+
+.slides{
+height:220px;
+}
+
+.slide-btn{
+width:38px;
+height:38px;
+font-size:13px;
+}
+
+}
+
+/* =========================================
+   Cards
+========================================= */
+
+@media (max-width:900px){
+
+.app-card,
+.system-card,
+.leader-card,
+.rank-card{
+width:95% !important;
+max-width:95%;
+padding:22px;
+}
+
+.system-card ul{
+font-size:15px;
+line-height:2;
+}
+
+}
+
+/* =========================================
+   FAQ
+========================================= */
+
+@media (max-width:700px){
+
+.faq-container{
+width:95%;
+}
+
+.faq-question{
+padding:16px;
+font-size:15px;
+line-height:1.8;
+}
+
+.faq-answer{
+font-size:14px;
+line-height:1.9;
+}
+
+}
+
+/* =========================================
+   التاريخ
+========================================= */
+
+@media (max-width:700px){
+
+.history-bg{
+width:95%;
+padding:12px;
+}
+
+#history .content-box p{
+font-size:14px;
+line-height:2.1;
+padding:8px;
+text-align:right;
+}
+
+}
+
+/* =========================================
+   الرتب والمناصب
+========================================= */
+
+@media (max-width:700px){
+
+.rank-switch{
+flex-direction:column;
+align-items:center;
+padding:0 15px;
+}
+
+.switch-btn{
+width:100%;
+justify-content:center;
+}
+
+.rank-category{
+font-size:20px;
+}
+
+.rank-card h3{
+font-size:17px;
+}
+
+.rank-card p{
+font-size:14px;
+line-height:2;
+}
+
+}
+
+/* =========================================
+   Footer
+========================================= */
+
+@media (max-width:700px){
+
+.footer-content{
+flex-direction:column;
+gap:30px;
+text-align:center;
+padding:30px 20px;
+}
+
+.footer-section{
+width:100%;
+}
+
+}
+
+/* =========================================
+   Loader للجوال
+========================================= */
+
+@media (max-width:700px){
+
+.loader-logo{
+width:100px;
+height:100px;
+}
+
+.loader-logo i{
+font-size:42px;
+}
+
+.loader-line{
+width:220px;
+}
+
+.loader-text{
+font-size:18px;
+}
+
+}
+
+/* =========================================
+   تحسينات عامة
+========================================= */
+
+img{
+max-width:100%;
+height:auto;
+display:block;
+}
+
+button{
+touch-action:manipulation;
+}
+
+*{
+-webkit-tap-highlight-color:transparent;
+}
+html{
+scroll-behavior:smooth;
+-webkit-text-size-adjust:100%;
 }
