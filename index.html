@@ -179,8 +179,9 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 </div>
 
 </div>
-<!-- مربع التنويه -->
-<div class="rp-warning-box">
+
+<div class="slider">
+    <div class="rp-warning-box">
 
 <div class="rp-warning-glow"></div>
 
@@ -195,11 +196,7 @@ onclick="window.open('https://docs.google.com/forms/d/e/1FAIpQLScI8RegvTy1dAYIQj
 </p>
 
 </div>
-
-</div>
-
-<div class="slider">
-<div class="slider">
+    </div>
 
 <button class="slide-btn left" onclick="prevSlide()">
 <i class="fa-solid fa-arrow-left"></i>
@@ -610,7 +607,7 @@ document.querySelectorAll(".switch-btn").forEach(b=>{
 b.classList.remove("active-switch")
 })
 
-e.currentTarget.classList.add("active")
+e.currentTarget.classList.add("active-switch")
 
 }
 
@@ -684,7 +681,25 @@ icon.classList.replace("fa-minus","fa-plus")
 }
 
 }
+function toggleDarkMode(){
 
+document.body.classList.toggle("dark-theme")
+
+const icon = document.getElementById("themeIcon")
+
+if(document.body.classList.contains("dark-theme")){
+
+icon.classList.replace("fa-moon","fa-sun")
+localStorage.setItem("theme","dark")
+
+}else{
+
+icon.classList.replace("fa-sun","fa-moon")
+localStorage.setItem("theme","light")
+
+}
+
+}
 </script>
 
 </body>

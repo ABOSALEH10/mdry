@@ -788,8 +788,9 @@ color:white;
 .rank-section{
 display:none;
 max-width:900px;
+width:100%;
 margin:auto;
-width: 95%;
+padding:0 18px 40px;
 }
 
 .active-rank{
@@ -808,10 +809,17 @@ gap: 10px;
 
 .rank-card{
 background: var(--bg-card);
-padding:20px;
-border-radius:12px;
-margin-bottom:15px;
-box-shadow:0 5px 18px rgba(0,0,0,0.1);
+padding:22px;
+border-radius:16px;
+margin-bottom:18px;
+box-shadow:0 5px 18px rgba(0,0,0,0.08);
+border:1px solid rgba(0,0,0,.05);
+transition:.3s;
+}
+
+.rank-card:hover{
+transform:translateY(-3px);
+box-shadow:0 10px 25px rgba(0,0,0,.12);
 }
 
 .rank-card h3{
@@ -1443,111 +1451,86 @@ scroll-behavior:smooth;
 -webkit-text-size-adjust:100%;
 }
 /* =========================================
-   RP Warning Box
+   Official Notice Box
 ========================================= */
 
 .rp-warning-box{
-position:relative;
 width:85%;
 margin:45px auto;
-border-radius:22px;
+background:var(--bg-card);
+border-radius:18px;
+border:1px solid rgba(212,175,55,.45);
+box-shadow:0 6px 20px rgba(0,0,0,.08);
 overflow:hidden;
-padding:2px;
-background:
-linear-gradient(
-135deg,
-#d4af37 0%,
-#0b7a5c 50%,
-#d4af37 100%
-);
-box-shadow:
-0 10px 35px rgba(0,0,0,.15),
-0 0 30px rgba(11,122,92,.18);
-animation:warningGlow 4s ease-in-out infinite;
 }
 
 .rp-warning-content{
+padding:35px 30px;
+text-align:right;
 position:relative;
-background:rgba(255,255,255,.96);
-backdrop-filter:blur(12px);
-padding:38px 30px;
-border-radius:20px;
-text-align:center;
-z-index:2;
 }
 
-.dark-theme .rp-warning-content{
-background:rgba(20,20,20,.92);
-}
-
-.rp-warning-glow{
+.rp-warning-content::before{
+content:"تنويه رسمي";
 position:absolute;
-inset:-100px;
-background:
-radial-gradient(circle,
-rgba(212,175,55,.22) 0%,
-transparent 70%);
-animation:rotateGlow 8s linear infinite;
-z-index:1;
+top:0;
+left:0;
+background:#0b7a5c;
+color:white;
+padding:8px 18px;
+font-size:13px;
+font-weight:700;
+border-bottom-right-radius:12px;
 }
 
 .rp-warning-content i{
-font-size:42px;
-margin-bottom:18px;
+font-size:30px;
 color:#d4af37;
-text-shadow:0 0 15px rgba(212,175,55,.4);
+margin-bottom:18px;
+display:block;
 }
 
 .rp-warning-content h2{
-font-size:28px;
-margin-bottom:18px;
+font-size:26px;
+margin-bottom:16px;
 color:#0b7a5c;
 font-weight:800;
+}
+
+.rp-warning-content p{
+font-size:16px;
+line-height:2.2;
+color:var(--text-main);
+font-weight:700;
+}
+
+.dark-theme .rp-warning-box{
+border:1px solid rgba(212,175,55,.25);
 }
 
 .dark-theme .rp-warning-content h2{
 color:#f5f5f5;
 }
 
+/* Responsive */
+
+@media(max-width:700px){
+
+.rp-warning-box{
+width:95%;
+}
+
+.rp-warning-content{
+padding:28px 18px;
+}
+
+.rp-warning-content h2{
+font-size:22px;
+}
+
 .rp-warning-content p{
-font-size:17px;
-line-height:2.2;
-color:var(--text-main);
-max-width:1000px;
-margin:auto;
-font-weight:700;
-}
-
-@keyframes warningGlow{
-
-0%{
-box-shadow:
-0 10px 35px rgba(0,0,0,.15),
-0 0 20px rgba(11,122,92,.15);
-}
-
-50%{
-box-shadow:
-0 15px 45px rgba(0,0,0,.22),
-0 0 40px rgba(212,175,55,.25);
-}
-
-100%{
-box-shadow:
-0 10px 35px rgba(0,0,0,.15),
-0 0 20px rgba(11,122,92,.15);
-}
-
-}
-
-@keyframes rotateGlow{
-
-0%{
-transform:rotate(0deg);
-}
-
-100%{
-transform:rotate(360deg);
+font-size:14px;
+line-height:2.1;
 }
 
 }
@@ -1575,6 +1558,123 @@ line-height:2.1;
 
 .rp-warning-content i{
 font-size:34px;
+}
+
+}
+/* =========================================
+   تحسينات احترافية للجوال
+========================================= */
+
+@media (max-width:768px){
+
+body{
+overflow-x:hidden;
+}
+
+/* منع التصاق المحتوى بالحواف */
+.page{
+padding-left:12px;
+padding-right:12px;
+}
+
+/* الهيدر */
+.gov-bar{
+padding:14px;
+}
+
+.gov-menu{
+grid-template-columns:1fr 1fr;
+gap:8px;
+}
+
+.nav-btn{
+font-size:13px;
+padding:11px 8px;
+}
+
+/* الهيرو */
+.hero{
+padding:55px 16px;
+}
+
+.hero h1{
+font-size:28px;
+line-height:1.6;
+}
+
+.hero p{
+font-size:14px;
+line-height:2;
+}
+
+/* الأزرار */
+.buttons{
+padding:25px 12px;
+gap:12px;
+}
+
+.main-btn{
+width:100%;
+padding:15px;
+font-size:15px;
+border-radius:14px;
+}
+
+/* بطاقات العدالة */
+.justice-strip{
+width:100%;
+padding:0 10px;
+}
+
+/* البطاقات العامة */
+.app-card,
+.system-card,
+.leader-card,
+.rank-card,
+.faq-item,
+.history-bg{
+width:100% !important;
+max-width:100% !important;
+}
+
+/* السلايدر */
+.slider{
+width:100%;
+padding:0 10px;
+}
+
+.slides{
+height:210px;
+}
+
+/* الصور */
+.slide{
+border-radius:14px;
+}
+
+/* الفوتر */
+.footer-content{
+padding:30px 15px;
+}
+
+/* نص التاريخ */
+#history .content-box p{
+font-size:14px;
+line-height:2.2;
+text-align:right;
+}
+
+/* العناوين */
+.rank-category{
+font-size:19px;
+}
+
+/* تقليل الظلال الثقيلة */
+.rank-card,
+.system-card,
+.app-card,
+.leader-card{
+box-shadow:0 4px 15px rgba(0,0,0,.08);
 }
 
 }
